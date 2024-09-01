@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 6,
     overflow: 'hidden',
-    width: '100%',
+    flex: 1,
     minHeight: 60,
   },
   background: {
