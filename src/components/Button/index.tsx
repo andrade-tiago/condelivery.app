@@ -1,10 +1,10 @@
 import GlobalButtonProps from "@/types/global-button-props"
-import FullButton from "./FullButton"
+import WhiteButton from "./WhiteButton"
 import GradientButton from "./GradientButton"
 import OutlineButton from "./OutlineButton"
 
 const ButtonVariants = {
-  full: FullButton,
+  white: WhiteButton,
   gradient: GradientButton,
   outline: OutlineButton,
 }

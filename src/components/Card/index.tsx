@@ -1,16 +1,16 @@
 import Colors from '@/constants/colors'
 import { View, StyleSheet, Image, Text } from 'react-native'
 import Button from '@/components/Button'
+import GlobalButtonProps from '@/types/global-button-props'
+
+type CardButtonProps = Omit<GlobalButtonProps, 'full' | 'icon'>
 
 type CardProps = {
   title: string,
   subtitle: string, 
   leftText: string,
   imgURL?: string,
-  buttons?: {
-    text: string,
-    onClick: Function,
-  }[],
+  buttons?: CardButtonProps[],
 }
 
 const Card: React.FunctionComponent<CardProps> = (props) => {
@@ -45,9 +45,8 @@ const Card: React.FunctionComponent<CardProps> = (props) => {
         <View style={styles.row}>
           {props.buttons.map((button, i) => (
             <Button key={i}
-              variant="full"
-              text={button.text}
-              onClick={button.onClick}
+              variant="white"
+              {...button}
             />
           ))}
         </View>
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 16,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   imgContainer: {
     width: 60,
