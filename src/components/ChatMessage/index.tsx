@@ -3,27 +3,29 @@ import { StyleSheet, Text, View } from "react-native"
 
 type ChatMessageProps = {
   text: string,
-  fromThisUser?: boolean,
+  role: 'user' | 'third',
   time: Date,
 }
 
 const ChatMessage: React.FunctionComponent<ChatMessageProps> = (props) => {
+  const isFromUser: boolean = props.role === 'user'
+
   const styles = StyleSheet.create({
     container: {
       gap: 8,
-      alignItems: props.fromThisUser ? 'flex-end' : 'flex-start',
+      alignItems: isFromUser ? 'flex-end' : 'flex-start',
       width: '100%',
     },
     balloon: {
-      backgroundColor: props.fromThisUser ? Colors.orange : Colors.weakOrange,
+      backgroundColor: isFromUser ? Colors.orange : Colors.weakOrange,
       borderRadius: 12,
-      borderTopLeftRadius: props.fromThisUser ? 12 : 0,
-      borderTopRightRadius: props.fromThisUser ? 0 : 12,
+      borderTopLeftRadius: isFromUser ? 12 : 0,
+      borderTopRightRadius: isFromUser ? 0 : 12,
       maxWidth: '85%',
       padding: 8,
     },
     text: {
-      color: props.fromThisUser ? Colors.white : Colors.black,
+      color: isFromUser ? Colors.white : Colors.black,
       fontSize: 16,
     },
     time: {
