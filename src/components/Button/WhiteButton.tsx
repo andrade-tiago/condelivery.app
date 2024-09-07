@@ -7,6 +7,7 @@ const WhiteButton: React.FunctionComponent<GlobalButtonProps> = (props) => {
     <TouchableOpacity
       activeOpacity={.6}
       style={{ ...styles.container, width: (props.full ? '100%' : 'auto') }}
+      onPress={props.onPress}
     >
       <Text style={styles.text}>
         {props.text}

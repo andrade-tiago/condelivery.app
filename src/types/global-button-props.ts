@@ -1,7 +1,9 @@
+import { GestureResponderEvent } from "react-native"
+
 type GlobalButtonProps = {
   text: string,
   icon?: string,
-  onClick: Function,
+  onPress?: (event: GestureResponderEvent) => void,
   full?: boolean,
 }
 
