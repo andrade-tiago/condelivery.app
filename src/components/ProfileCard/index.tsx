@@ -12,6 +12,7 @@ const ProfileCard: React.FunctionComponent<ProfileCardProps> = (props) => {
       <Image
         source={{ uri: props.imgURL }}
         style={styles.image}
+        resizeMode="cover"
       />
 
       <Text
