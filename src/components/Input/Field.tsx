@@ -6,7 +6,7 @@ type FieldProps = Omit<TextInputProps, 'placeholderTextColor' | 'style'>
 const Field: React.FunctionComponent<FieldProps> = (props) => {
   return (
     <TextInput
-      placeholderTextColor={Colors.gray}
+      placeholderTextColor={Colors.neutral[600]}
       style={styles.input}
       {...props}
     />
@@ -17,7 +17,7 @@ export default Field
 const styles = StyleSheet.create({
   input: {
     flex: 1,
-    color: Colors.black,
+    color: Colors.black[900],
     fontSize: 14,
   },
 })

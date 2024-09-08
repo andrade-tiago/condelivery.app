@@ -5,9 +5,9 @@ import Colors from "@/constants/colors"
 const SearchBar: React.FunctionComponent = () => {
   return (
     <Input.Root variant="outline">
-      <Octicons name="search" size={20} color={Colors.gray} />
+      <Octicons name="search" size={20} color={Colors.neutral[600]} />
       <Input.Field placeholder="Buscar..." />
-      <Ionicons name="options-sharp" size={20} color={Colors.gray} />
+      <Ionicons name="options-sharp" size={20} color={Colors.neutral[600]} />
     </Input.Root>
   )
 }

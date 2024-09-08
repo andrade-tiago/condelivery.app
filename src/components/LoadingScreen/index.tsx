@@ -5,7 +5,7 @@ const LoadingScreen: React.FunctionComponent = () => {
   return (
     <View style={styles.container}>
       <ActivityIndicator
-        color={Colors.orange}
+        color={Colors.primary[300]}
         size="large"
       />
     </View>

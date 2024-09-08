@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 16,
     gap: 24,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.white[0],
     elevation: 4,
   },
   row: {
@@ -90,16 +90,16 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 14,
     fontWeight: '400',
-    color: Colors.gray,
+    color: Colors.neutral[600],
   },
   title: {
     fontSize: 16,
     fontWeight: '400',
-    color: Colors.black,
+    color: Colors.black[900],
   },
   leftText: {
     fontSize: 16,
     fontWeight: '400',
-    color: Colors.orange,
+    color: Colors.primary[300],
   }
 })

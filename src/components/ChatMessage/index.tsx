@@ -17,7 +17,7 @@ const ChatMessage: React.FunctionComponent<ChatMessageProps> = (props) => {
       width: '100%',
     },
     balloon: {
-      backgroundColor: isFromUser ? Colors.orange : Colors.weakOrange,
+      backgroundColor: isFromUser ? Colors.primary[300] : Colors.primary[200],
       borderRadius: 12,
       borderTopLeftRadius: isFromUser ? 12 : 0,
       borderTopRightRadius: isFromUser ? 0 : 12,
@@ -25,11 +25,11 @@ const ChatMessage: React.FunctionComponent<ChatMessageProps> = (props) => {
       padding: 8,
     },
     text: {
-      color: isFromUser ? Colors.white : Colors.black,
+      color: isFromUser ? Colors.white[0] : Colors.black[900],
       fontSize: 16,
     },
     time: {
-      color: Colors.gray,
+      color: Colors.neutral[600],
       fontSize: 10,
     },
   })

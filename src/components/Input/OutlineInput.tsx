@@ -14,13 +14,13 @@ export default OutlineInputLayout
 const styles = StyleSheet.create({
   wrapper: {
     borderWidth: 1.5,
-    borderColor: Colors.lightGray,
+    borderColor: Colors.neutral[300],
     borderRadius: 6,
     minHeight: 40,
     gap: 4,
     padding: 16,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.white[0],
   },
 })

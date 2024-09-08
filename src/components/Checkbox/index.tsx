@@ -9,9 +9,11 @@ type CheckboxProps = {
 }
 
 const Checkbox: React.FunctionComponent<CheckboxProps> = (props) => {
+  const gradientColors = [ Colors.primary[300], Colors.secondary[300] ] as string[]
+
   return (
     <LinearGradient
-      colors={[ Colors.orange, Colors.lightOrange ]}
+      colors={gradientColors}
       start={{ x: 0, y: .5 }}
       end={{ x: 1, y: .5 }}
       style={styles.background}
@@ -20,12 +22,12 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = (props) => {
       <View
         style={{
           ...styles.content,
-          backgroundColor: props.checked ? 'transparent' : Colors.white,
+          backgroundColor: props.checked ? 'transparent' : Colors.white[0],
         }}
       >
         <FontAwesome6 name="check"
           size={16}
-          color={Colors.white}
+          color={Colors.white[0]}
         />
       </View>
     </LinearGradient>

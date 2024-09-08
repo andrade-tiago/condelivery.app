@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     borderRadius: 27,
   },
   text: {
-    color: Colors.black,
+    color: Colors.black[900],
     fontSize: 16,
     fontWeight: '700',
     maxWidth: 108,

@@ -11,7 +11,7 @@ const GradientButton: React.FunctionComponent<GlobalButtonProps> = (props) => {
       onPress={props.onPress}
     >
       <LinearGradient
-        colors={[ Colors.orange, Colors.lightOrange ]}
+        colors={[ Colors.primary[300], Colors.secondary[300] ]}
         start={{ x: 0, y: .5 }}
         end={{ x: 1, y: .5 }}
         style={styles.background}
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
   },
   text: {
-    color: Colors.white,
+    color: Colors.white[0],
     fontSize: 16,
     fontWeight: '700',
   },

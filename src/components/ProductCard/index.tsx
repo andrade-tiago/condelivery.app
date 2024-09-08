@@ -42,12 +42,12 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   title: {
-    color: Colors.black,
+    color: Colors.black[900],
     fontSize: 16,
     fontWeight: '700',
   },
   description: {
-    color: Colors.gray,
+    color: Colors.neutral[600],
     fontSize: 16,
     fontWeight: '400',
   },

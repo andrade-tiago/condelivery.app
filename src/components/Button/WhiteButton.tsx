@@ -19,7 +19,7 @@ export default WhiteButton
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.white[0],
     borderRadius: 6,
     overflow: 'hidden',
     justifyContent: 'center',
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     height: 54,
   },
   text: {
-    color: Colors.orange,
+    color: Colors.primary[300],
     fontSize: 16,
     fontWeight: '700',
   },

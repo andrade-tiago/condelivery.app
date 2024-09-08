@@ -11,7 +11,7 @@ const OutlineButton: React.FunctionComponent<GlobalButtonProps> = (props) => {
       onPress={props.onPress}
     >
       <LinearGradient
-        colors={[ Colors.orange, Colors.lightOrange ]}
+        colors={[ Colors.primary[300], Colors.secondary[300] ]}
         start={{ x: 0, y: .5 }}
         end={{ x: 1, y: .5 }}
         style={styles.border}
@@ -29,7 +29,7 @@ export default OutlineButton
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: Colors.orange,
+    borderColor: Colors.primary[300],
     borderRadius: 6,
     overflow: 'hidden',
     height: 54,
@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
   content: {
     borderRadius: 5,
     flex: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.white[0],
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 24,
   },
   text: {
-    color: Colors.orange,
+    color: Colors.primary[300],
     fontSize: 16,
     fontWeight: '700',
   }
