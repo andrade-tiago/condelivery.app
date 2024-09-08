@@ -34,7 +34,7 @@ const ChatMessage: React.FunctionComponent<ChatMessageProps> = (props) => {
     },
   })
 
-  const time = 
+  const time: string = 
     props.time.getHours().toString().padStart(2, '0') + ':' +
     props.time.getMinutes().toString().padStart(2, '0')
 
