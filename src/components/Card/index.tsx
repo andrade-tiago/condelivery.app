@@ -1,16 +1,13 @@
 import Colors from '@/constants/colors'
 import { View, StyleSheet, Image, Text } from 'react-native'
-import Button from '@/components/Button'
-import GlobalButtonProps from '@/types/global-button-props'
-
-type CardButtonProps = Omit<GlobalButtonProps, 'full' | 'icon'>
+import { ReactNode } from 'react'
 
 type CardProps = {
-  title: string,
-  subtitle: string, 
-  leftText: string,
+  title?: string,
+  subtitle?: string,
+  leftContent?: ReactNode,
   imgURL?: string,
-  buttons?: CardButtonProps[],
+  bottomContent?: ReactNode,
 }
 
 const Card: React.FunctionComponent<CardProps> = (props) => {
@@ -28,27 +25,28 @@ const Card: React.FunctionComponent<CardProps> = (props) => {
         )}
 
         <View style={styles.infoContainer}>
-          <Text style={styles.subtitle}>
-            {props.subtitle}
-          </Text>
-          <Text style={styles.title}>
-            {props.title}
-          </Text>
+          {props.subtitle && (
+            <Text style={styles.subtitle}>
+              {props.subtitle}
+            </Text>
+          )}
+          {props.title && (
+            <Text style={styles.title}>
+              {props.title}
+            </Text>
+          )}
         </View>
-
-        <Text style={styles.leftText}>
-          {props.leftText}
-        </Text>
+        
+        {props.leftContent && (
+          <View>
+            {props.leftContent}
+          </View>
+        )}
       </View>
 
-      {props.buttons && (
-        <View style={styles.row}>
-          {props.buttons.map((button, i) => (
-            <Button key={i}
-              variant="white"
-              {...button}
-            />
-          ))}
+      {props.bottomContent && (
+        <View style={{ width: '100%', borderWidth: 1 }}>
+          {props.bottomContent}
         </View>
       )}
     </View>
@@ -74,7 +72,7 @@ const styles = StyleSheet.create({
   },
   imgContainer: {
     width: 60,
-    height: 60,
+    aspectRatio: 1 / 1,
     borderRadius: 6,
     overflow: 'hidden',
     elevation: 4,
@@ -101,5 +99,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '400',
     color: Colors.primary[300],
-  }
+  },
 })
