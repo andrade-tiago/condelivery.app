@@ -1,3 +1,4 @@
+import Colors from "@/constants/colors"
 import { Image, StyleSheet, View } from "react-native"
 
 type ImageCardProps = {
@@ -27,5 +28,6 @@ const styles = StyleSheet.create({
   },
   img: {
     flex: 1,
+    backgroundColor: Colors.white[0],
   },
 })
