@@ -1,6 +1,7 @@
 import Colors from '@/constants/colors'
-import { View, StyleSheet, Image, Text } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { ReactNode } from 'react'
+import ImageCard from '../ImageCard'
 
 type CardProps = {
   title?: string,
@@ -15,13 +16,7 @@ const Card: React.FunctionComponent<CardProps> = (props) => {
     <View style={styles.container}>
       <View style={styles.row}>
         {props.imgURL && (
-          <View style={styles.imgContainer}>
-            <Image
-              source={{ uri: props.imgURL }}
-              style={styles.img}
-              resizeMode="cover"
-            />
-          </View>
+          <ImageCard imgURL={props.imgURL} />
         )}
 
         <View style={styles.infoContainer}>
@@ -69,16 +64,6 @@ const styles = StyleSheet.create({
     gap: 16,
     alignItems: 'center',
     justifyContent: 'space-around',
-  },
-  imgContainer: {
-    width: 60,
-    aspectRatio: 1 / 1,
-    borderRadius: 6,
-    overflow: 'hidden',
-    elevation: 4,
-  },
-  img: {
-    flex: 1,
   },
   infoContainer: {
     flex: 1,
