@@ -13,6 +13,15 @@ const AppLayout: React.FunctionComponent = () => {
         name="(tabs)"
         options={{ headerShown: false }}
       />
+
+      <Stack.Screen
+        name="notifications"
+        options={{
+          headerTitle: 'Notificações',
+          headerTitleAlign: 'center',
+          headerShadowVisible: false,
+        }}
+      />
     </Stack>
   )
 }

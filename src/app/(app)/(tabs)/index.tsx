@@ -4,6 +4,7 @@ import { H2, PrimaryText, SmallText } from "@/components/Text"
 import Colors from "@/constants/colors"
 import deliveryApps from "@/content/delivery-apps"
 import { MaterialIcons, Octicons } from "@expo/vector-icons"
+import { Link } from "expo-router"
 import { StyleSheet, View } from "react-native"
 
 const Home: React.FunctionComponent = () => {
@@ -35,10 +36,12 @@ const Home: React.FunctionComponent = () => {
           </PrimaryText>
         </View>
 
-        <Octicons name="bell"
-          size={24}
-          color={Colors.neutral[700]}
-        />
+        <Link href="/(app)/notifications">
+          <Octicons name="bell"
+            size={24}
+            color={Colors.neutral[700]}
+          />
+        </Link>
       </View>
 
       <Banner
