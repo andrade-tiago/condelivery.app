@@ -8,7 +8,12 @@ const AppLayout: React.FunctionComponent = () => {
     return <Redirect href={'/login'} />
   }
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerShadowVisible: false,
+      }}
+    >
       <Stack.Screen
         name="(tabs)"
         options={{ headerShown: false }}
@@ -16,11 +21,10 @@ const AppLayout: React.FunctionComponent = () => {
 
       <Stack.Screen
         name="notifications"
-        options={{
-          headerTitle: 'Notificações',
-          headerTitleAlign: 'center',
-          headerShadowVisible: false,
-        }}
+        options={{ headerTitle: 'Notificações' }}
+      />
+      <Stack.Screen
+        name="delivery-app/[id]"
       />
     </Stack>
   )

@@ -2,26 +2,28 @@ import Banner from "@/components/Banner"
 import ProfileCard from "@/components/ProfileCard"
 import { H2, PrimaryText, SmallText } from "@/components/Text"
 import Colors from "@/constants/colors"
-import deliveryApps from "@/content/delivery-apps"
-import { MaterialIcons, Octicons } from "@expo/vector-icons"
-import { Link } from "expo-router"
-import { StyleSheet, View } from "react-native"
+import restaurants, { Restaurant } from "@/content/restaurants"
+import { MaterialIcons } from "@expo/vector-icons"
+import { useLocalSearchParams, useNavigation } from "expo-router"
+import React from "react"
+import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
 const Home: React.FunctionComponent = () => {
-  const deliveryAppsCards: React.JSX.Element[] =
-    deliveryApps.map((app) => (
-      <Link key={app.id}
-        href={{
-          pathname: '/delivery-app/[id]',
-          params: { id: app.id, name: app.name },
-        }}
-      >
-        <ProfileCard
-          imgURL={app.logoImgURL}
-          title={app.name}
-        />
-      </Link>
-    ))
+  const navigation = useNavigation()
+  const params = useLocalSearchParams()
+
+  // Provisório
+  const items = Array.from({ length: 8 }).map( (_, i) => ({ ...restaurants[0], id: i }) )
+  const renderItem: ListRenderItem<Restaurant> = ({ item }) => (
+    <ProfileCard
+      imgURL={item.imgURL}
+      title={item.name}
+    />
+  )
+
+  React.useEffect(() => {
+    navigation.setOptions({ headerTitle: params.name })
+  }, [])
 
   return (
     <View style={styles.screen}>
@@ -42,13 +44,6 @@ const Home: React.FunctionComponent = () => {
             Avenida Santa Fé, 93 - Recanto Regina
           </PrimaryText>
         </View>
-
-        <Link href="/(app)/notifications">
-          <Octicons name="bell"
-            size={24}
-            color={Colors.neutral[700]}
-          />
-        </Link>
       </View>
 
       <Banner
@@ -61,12 +56,16 @@ const Home: React.FunctionComponent = () => {
 
       <View style={styles.deliveryAppsSection}>
         <H2>
-          Apps disponíveis
+          Restaurantes
         </H2>
 
-        <View style={styles.deliveryAppsList}>
-          {deliveryAppsCards}
-        </View>
+        <FlatList horizontal
+          data={items}
+          renderItem={renderItem}
+          style={styles.restaurantsList}
+          contentContainerStyle={styles.restaurantsListContent}
+          showsHorizontalScrollIndicator={false}
+        />
       </View>
     </View>
   )
@@ -96,5 +95,12 @@ const styles = StyleSheet.create({
   deliveryAppsList: {
     flexDirection: 'row',
     justifyContent: 'space-around'
+  },
+  restaurantsList: {
+    width: '100%',
+    overflow: 'visible',
+  },
+  restaurantsListContent: {
+    gap: 24,
   },
 })
