@@ -16,8 +16,7 @@ const Home: React.FunctionComponent = () => {
   const navigation = useNavigation()
   const params = useLocalSearchParams<SearchParams>()
 
-  // Provisório
-  const items = Array.from({ length: 8 }).map( (_, i) => ({ ...restaurants[0], id: i }) )
+  const items = restaurants
   const renderItem: ListRenderItem<Restaurant> = ({ item }) => (
     <ProfileCard
       imgURL={item.imgURL}
