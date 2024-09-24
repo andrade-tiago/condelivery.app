@@ -8,9 +8,13 @@ import { useLocalSearchParams, useNavigation } from "expo-router"
 import React from "react"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
+type SearchParams = {
+  name: string,
+}
+
 const Home: React.FunctionComponent = () => {
   const navigation = useNavigation()
-  const params = useLocalSearchParams()
+  const params = useLocalSearchParams<SearchParams>()
 
   // Provisório
   const items = Array.from({ length: 8 }).map( (_, i) => ({ ...restaurants[0], id: i }) )
