@@ -9,13 +9,15 @@ const ButtonVariants = {
   outline: OutlineButton,
 }
 
-type ButtonProps = GlobalButtonProps & {
-  variant: keyof typeof ButtonVariants,
-}
+type ButtonVariant = keyof typeof ButtonVariants
+
+type ButtonProps = GlobalButtonProps & { variant: ButtonVariant }
 
 const Button: React.FunctionComponent<ButtonProps> = ({ variant, ...props }) => {
   const ButtonVariant = ButtonVariants[variant]
 
   return <ButtonVariant {...props} />
 }
+
 export default Button
+export { ButtonProps, ButtonVariant }
