@@ -1,8 +1,10 @@
 import Colors from "@/constants/colors"
-import { Octicons } from "@expo/vector-icons"
+import { Ionicons, Octicons } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
 
 const TabLayout: React.FunctionComponent = () => {
+  const iconSize = 32
+
   return (
     <Tabs
       screenOptions={{
@@ -18,7 +20,16 @@ const TabLayout: React.FunctionComponent = () => {
         options={{
           title: 'Home',
           tabBarIcon: ({ color }) => (
-            <Octicons name="home" size={32} color={color} />
+            <Octicons name="home" size={iconSize} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="requests"
+        options={{
+          title: 'Pedidos',
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="bag-handle" size={iconSize} color={color} />
           ),
         }}
       />
