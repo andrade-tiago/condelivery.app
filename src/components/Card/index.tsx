@@ -40,7 +40,7 @@ const Card: React.FunctionComponent<CardProps> = (props) => {
       </View>
 
       {props.bottomContent && (
-        <View style={{ width: '100%', borderWidth: 1 }}>
+        <View style={{ width: '100%' }}>
           {props.bottomContent}
         </View>
       )}
