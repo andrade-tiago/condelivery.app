@@ -2,12 +2,14 @@ import Button, { ButtonProps, ButtonVariant } from "@/components/Button"
 import RequestCard from "@/components/RequestCard"
 import Colors from "@/constants/colors"
 import requests from "@/content/requests"
+import { useRouter } from "expo-router"
 import React from "react"
 import { StyleSheet, View } from "react-native"
 
 type RequestsType = 'active' | 'completed'
 
 const RequestsScreen: React.FunctionComponent = () => {
+  const router = useRouter()
   const [requestsTypeSelected, setRequestsTypeSelected] = React.useState<RequestsType>('active')
 
   const getButtonVariant = (requestType: RequestsType): ButtonVariant => {
@@ -41,6 +43,7 @@ const RequestsScreen: React.FunctionComponent = () => {
       requestsTypeSelected === 'active' ? [
         {
           text: 'Chat',
+          onPress: () => router.push('/delivery-chat/1'),
         },
         {
           text: 'Acompanhar',

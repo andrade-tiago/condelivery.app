@@ -20,11 +20,15 @@ const AppLayout: React.FunctionComponent = () => {
       />
 
       <Stack.Screen
-        name="notifications"
-        options={{ headerTitle: 'Notificações' }}
+        name="delivery-app/[id]"
       />
       <Stack.Screen
-        name="delivery-app/[id]"
+        name="delivery-chat/[id]"
+        options={{ headerTitle: 'Chat' }}
+      />
+      <Stack.Screen
+        name="notifications"
+        options={{ headerTitle: 'Notificações' }}
       />
     </Stack>
   )
