@@ -4,6 +4,8 @@ import { StyleSheet } from "react-native"
 
 type ChatMessageStyleProps = {
   role: ChatMessageRole,
+  rounded: boolean,
+  showTime: boolean,
 }
 
 const getStyles = (props: ChatMessageStyleProps) => {
@@ -14,12 +16,13 @@ const getStyles = (props: ChatMessageStyleProps) => {
       gap: 8,
       alignItems: (isFromUser ? 'flex-end' : 'flex-start'),
       width: '100%',
+      paddingBottom: (props.showTime ? 0 : 4),
     },
     balloon: {
       backgroundColor: (isFromUser ? Colors.primary[300] : Colors.primary[200]),
       borderRadius: 12,
-      borderTopLeftRadius: (isFromUser ? 12 : 0),
-      borderTopRightRadius: (isFromUser ? 0 : 12),
+      borderTopLeftRadius: (isFromUser || props.rounded ? 12 : 0),
+      borderTopRightRadius: (!isFromUser || props.rounded ? 12 : 0),
       maxWidth: '85%',
       padding: 8,
     },
