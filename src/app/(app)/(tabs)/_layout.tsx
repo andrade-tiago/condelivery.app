@@ -1,5 +1,5 @@
 import Colors from "@/constants/colors"
-import { Ionicons, Octicons } from "@expo/vector-icons"
+import { Feather, Ionicons, Octicons } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
 
 const TabLayout: React.FunctionComponent = () => {
@@ -30,6 +30,15 @@ const TabLayout: React.FunctionComponent = () => {
           title: 'Pedidos',
           tabBarIcon: ({ color }) => (
             <Ionicons name="bag-handle" size={iconSize} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="receivers"
+        options={{
+          title: 'Entregas',
+          tabBarIcon: ({ color }) => (
+            <Feather name="box" size={iconSize} color={color} />
           ),
         }}
       />
