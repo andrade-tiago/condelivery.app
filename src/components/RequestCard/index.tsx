@@ -3,6 +3,7 @@ import Card from "../Card"
 import Button, { ButtonProps } from "../Button"
 import { SecondaryText, StrongText } from "../Text"
 import { StyleSheet, View } from "react-native"
+import currency from "@/lib/intl-currency"
 
 type RequestCardProps = {
   request: Request,
@@ -38,9 +39,11 @@ const RequestCard: React.FunctionComponent<RequestCardProps> = (props) => {
     </View>
   )
 
-  const priceComponent = (
+  const totalCostText = currency.format(totalCost)
+
+  const totalCostComponent = (
     <StrongText>
-      R$ {totalCost.toFixed(2)}
+      {totalCostText}
     </StrongText>
   )
 
@@ -48,7 +51,7 @@ const RequestCard: React.FunctionComponent<RequestCardProps> = (props) => {
     <Card
       title={props.request.store}
       subtitle={`${props.request.app} - ${totalItems} itens`}
-      leftContent={priceComponent}
+      leftContent={totalCostComponent}
       bottomContent={cardBottomContent}
     />
   )
