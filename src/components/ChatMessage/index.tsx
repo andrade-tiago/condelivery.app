@@ -1,6 +1,7 @@
 import { Text, View } from "react-native"
 import { getStyles } from "./styles"
 import Message from "@/types/chat-message"
+import dayjs from '@/lib/dayjs'
 
 type ChatMessageProps = Message & {
   showTime?: boolean,
@@ -14,9 +15,7 @@ const ChatMessage: React.FunctionComponent<ChatMessageProps> = (props) => {
     showTime: !!props.showTime,
   })
 
-  const time: string = 
-    props.time.getHours().toString().padStart(2, '0') + ':' +
-    props.time.getMinutes().toString().padStart(2, '0')
+  const time: string = dayjs().format('HH:mm')
 
   return (
     <View style={styles.container}>
@@ -28,7 +27,7 @@ const ChatMessage: React.FunctionComponent<ChatMessageProps> = (props) => {
 
       {props.showTime && (
         <Text style={styles.time}>
-          {props.showTime && time}
+          {time}
         </Text>
       )}
     </View>
