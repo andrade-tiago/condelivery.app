@@ -104,10 +104,10 @@ const styles = StyleSheet.create({
   },
   cardList: {
     flex: 1,
-    paddingHorizontal: 24,
   },
   cardListContentContainer: {
     flex: 1,
     gap: 16,
+    padding: 24,
   },
 })
