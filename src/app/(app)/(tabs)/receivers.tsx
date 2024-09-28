@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   cardBottomContentContainer: {
-    flex: 1,
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     flexWrap: 'wrap',
