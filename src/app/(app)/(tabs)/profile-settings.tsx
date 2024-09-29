@@ -21,7 +21,7 @@ const ProfileSettingsScreen = () => {
       settings: [
         { text: 'Editar perfil', onPress: () => router.push('/(app)/profile-edit') },
         { text: 'Endereços salvos' },
-        { text: 'Cartões salvos' },
+        { text: 'Cartões salvos', onPress: () => router.push('/(app)/saved-cards') },
         { text: 'Me tornar um entregador' },
       ]
     },

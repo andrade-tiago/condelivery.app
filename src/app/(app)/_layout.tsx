@@ -34,6 +34,10 @@ const AppLayout: React.FunctionComponent = () => {
         name="profile-edit"
         options={{ headerTitle: 'Perfil' }}
       />
+      <Stack.Screen
+        name="saved-cards"
+        options={{ headerTitle: 'Cartões salvos' }}
+      />
     </Stack>
   )
 }
