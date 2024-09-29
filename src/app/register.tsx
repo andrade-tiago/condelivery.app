@@ -15,13 +15,16 @@ import ImagesURLs from "@/constants/images-url"
 import React from "react"
 import { useRouter } from "expo-router"
 import { Link } from "expo-router"
+import useLoginStore from "@/store/login"
 
 const Login: React.FunctionComponent = () => {
+  const loginStore = useLoginStore()
   const router = useRouter()
 
   const [remPassword, setRemPassword] = React.useState<boolean>(false)
 
   const login = () => {
+    loginStore.setLogged(true)
     router.replace('/')
   }
 

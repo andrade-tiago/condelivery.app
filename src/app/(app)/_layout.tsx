@@ -1,10 +1,11 @@
+import useLoginStore from '@/store/login'
 import { Redirect } from 'expo-router'
 import { Stack } from 'expo-router/stack'
 
 const AppLayout: React.FunctionComponent = () => {
-  const login: boolean = true
+  const loginStore = useLoginStore()
 
-  if (!login) {
+  if (!loginStore.logged) {
     return <Redirect href={'/login'} />
   }
   return (
