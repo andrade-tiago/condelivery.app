@@ -30,6 +30,10 @@ const AppLayout: React.FunctionComponent = () => {
         name="notifications"
         options={{ headerTitle: 'Notificações' }}
       />
+      <Stack.Screen
+        name="profile-edit"
+        options={{ headerTitle: 'Perfil' }}
+      />
     </Stack>
   )
 }

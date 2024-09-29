@@ -3,6 +3,7 @@ import SettingOption, { SettingOptionProps } from "@/components/SettingOption"
 import { SecondaryText } from "@/components/Text"
 import Colors from "@/constants/colors"
 import profile from "@/content/profile"
+import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
 
 type Category = {
@@ -12,12 +13,13 @@ type Category = {
 
 const ProfileSettingsScreen = () => {
   const userData = profile
+  const router = useRouter()
 
   const settings: Category[] = [
     {
       name: 'Perfil',
       settings: [
-        { text: 'Editar perfil' },
+        { text: 'Editar perfil', onPress: () => router.push('/(app)/profile-edit') },
         { text: 'Endereços salvos' },
         { text: 'Cartões salvos' },
         { text: 'Me tornar um entregador' },
