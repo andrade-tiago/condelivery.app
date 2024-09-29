@@ -1,5 +1,5 @@
 import Colors from "@/constants/colors"
-import { Feather, Ionicons, Octicons } from "@expo/vector-icons"
+import { Feather, FontAwesome, Ionicons, Octicons } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
 
 const TabLayout: React.FunctionComponent = () => {
@@ -39,6 +39,15 @@ const TabLayout: React.FunctionComponent = () => {
           title: 'Entregas',
           tabBarIcon: ({ color }) => (
             <Feather name="box" size={iconSize} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile-settings"
+        options={{
+          title: 'Configurações de Perfil',
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="user-circle-o" size={iconSize} color={color} />
           ),
         }}
       />
