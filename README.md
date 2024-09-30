@@ -1,8 +1,8 @@
 # Condelivery
 
 <img
-   src="./assets/images/complete.png"
-   style="max-height: 200px"
+   src="./assets/images/logo.png"
+   style="height: 120px"
    title="Logo do Condelivery"
    alt="Logo do Condelivery"
 />
