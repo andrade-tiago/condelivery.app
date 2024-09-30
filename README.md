@@ -26,7 +26,7 @@ A solução se destaca pelo seu forte apelo social, proporcionando oportunidades
 # Baixe o zip com todo o código e depois o extraia em sua máquina, ou simplesmente clone o repositório usando o Git:
 git clone https://github.com/andrade-tiago/condelivery.app.git
 
-# Acesse na pasta
+# Acesse a pasta
 cd condelivery.app
 
 # Baixe as dependências
