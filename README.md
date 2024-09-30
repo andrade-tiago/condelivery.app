@@ -11,6 +11,8 @@ O **Condelivery** é um inovador sistema de entregas direcionado exclusivamente 
 
 A solução se destaca pelo seu forte apelo social, proporcionando oportunidades de emprego para todos os interessados em realizar as entregas diretamente aos residentes dos condomínios.
 
+> Pitch: [YouTube](https://www.youtube.com/watch?v=QaElNAv6Ne0)
+
 ## Como executar?
 
 ### Pré-requisitos
