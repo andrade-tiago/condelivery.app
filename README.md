@@ -1,50 +1,43 @@
-# Welcome to your Expo app 👋
+# Condelivery
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<img
+   src="./assets/images/complete.png"
+   style="max-height: 200px"
+   title="Logo do Condelivery"
+   alt="Logo do Condelivery"
+/>
 
-## Get started
+O **Condelivery** é um inovador sistema de entregas direcionado exclusivamente para condomínios, integrando-se a serviços de delivery de aplicativos conhecidos, como iFood e Rappi, entre outros, com o objetivo de simplificar o processo de recebimento de entregas e mercadorias para os moradores, abrangendo desde condomínios grandes e complexos até aqueles com apenas uma torre.
 
-1. Install dependencies
+A solução se destaca pelo seu forte apelo social, proporcionando oportunidades de emprego para todos os interessados em realizar as entregas diretamente aos residentes dos condomínios.
 
-   ```bash
-   npm install
-   ```
+## Como executar?
 
-2. Start the app
+### Pré-requisitos
 
-   ```bash
-    npx expo start
-   ```
+- [Node.js](https://nodejs.org/);
+- NPM (normalmente já vem com o Node);
+- [Git](https://git-scm.com/) (opcional, mas se você está aqui...);
+- [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent) em seu dispositivo Android ou [Android Studio](https://developer.android.com/studio) em seu computador.
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### Receita de bolo (não literalmente)
 
 ```bash
-npm run reset-project
+# Baixe o zip com todo o código e depois o extraia em sua máquina, ou simplesmente clone o repositório usando o Git:
+git clone https://github.com/andrade-tiago/condelivery.app.git
+
+# Acesse na pasta
+cd condelivery.app
+
+# Baixe as dependências
+npm install
+
+# Execute a aplicação :D
+npx expo start
+
+# Êeeeeeeeeee :D
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Alternativa
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Você também pode instalar o último [APK](https://drive.google.com/file/d/1fKEUBqanvO9kS8zl1BJb0lhJD_WhHfM0/view?usp=sharing) gerado do estágio atual de desenvolvimento diretamente em seu dispositivo móvel.
