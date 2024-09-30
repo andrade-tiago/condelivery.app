@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "condelivery.app",
-    "slug": "condelivery.app",
+    "slug": "condelivery",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.andradetiago.condelivery"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f8b730fa-ed42-422d-9db8-5555bc7db327"
+      }
+    },
+    "owner": "andrade-tiago"
   }
 }
