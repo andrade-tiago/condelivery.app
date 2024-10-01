@@ -46,6 +46,7 @@ const RequestsScreen: React.FunctionComponent = () => {
         id={item.id}
         items={item.items}
         storeName={item.store}
+        storeImgURL={item.storeImgURL}
       />
     )
   }

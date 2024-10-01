@@ -9,6 +9,7 @@ export type Request = {
   store: string,
   completed: boolean,
   id: number,
+  storeImgURL: string,
 }
 
 const requests: Request[] = [
@@ -27,6 +28,7 @@ const requests: Request[] = [
       },
     ],
     store: 'Pizza Hut',
+    storeImgURL: 'https://yt3.googleusercontent.com/ytc/AOPolaR0bfAa132btyYxM82Bb8p6oSNI60M66uBa-EiMNQ=s176-c-k-c0x00ffffff-no-rj',
   },
   {
     id: 1,
@@ -38,7 +40,8 @@ const requests: Request[] = [
         title: 'Quibe',
       },
     ],
-    store: 'Girafas',
+    store: 'Giraffas',
+    storeImgURL: 'https://assets.deliveryinbox.com.br/images/establishments/giraffas.jpg',
   },
 ]
 export default requests
