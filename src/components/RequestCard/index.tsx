@@ -1,73 +1,57 @@
-import { Request } from "@/content/requests"
-import Card from "../Card"
-import Button, { ButtonProps } from "../Button"
-import { SecondaryText, StrongText } from "../Text"
-import { StyleSheet, View } from "react-native"
+import { RequestItem } from "@/content/requests"
+import Card, { CardButtonProps, CardProps } from "../Card"
 import currency from "@/lib/intl-currency"
+import { useRouter } from "expo-router"
 
-type RequestCardProps = {
-  request: Request,
-  buttons?: Omit<ButtonProps, 'variant'>[],
-  showItems: boolean,
+export type RequestCardProps = {
+  appName: string;
+  items: RequestItem[];
+  storeName: string;
+  completed: boolean;
+  id: number;
 }
 
 const RequestCard: React.FunctionComponent<RequestCardProps> = (props) => {
-  const totalCost = props.request.items.reduce((acc, item) => acc + item.price, 0)
+  const router = useRouter()
+  
+  const totalCost = props.items.reduce((sum, item) => sum + item.price, 0)
 
-  const totalItems = props.request.items.length
+  const totalItems = props.items.length
 
-  const buttons = props.buttons?.map((buttonProps, i) => {
-    return <Button key={i} variant="white" {...buttonProps} />
-  })
+  const quantityTerm = (totalItems === 1) ? 'item' : 'itens'
 
-  const items = props.request.items.map((item, i) => {
-    return <SecondaryText key={i} children={item.title} />
-  })
+  const listMarker = String.fromCharCode(9432)
 
-  const cardBottomContent = (
-    <View style={styles.cardBottomContentContainer}>
-      {props.showItems && (
-        <View style={styles.itemsContainer}>
-          {items}
-        </View>
-      )}
-      {buttons && (
-        <View style={styles.buttonsContainer}>
-          {buttons}
-        </View>
-      )}
-    </View>
-  )
+  const buttonsIfCompleted: CardButtonProps[] = [
+    {
+      text: 'Pedir novamente',
+    },
+    {
+      text: 'Avaliado',
+    },
+  ]
+  const buttonsIfActive: CardButtonProps[] = [
+    {
+      text: 'Chat',
+      onPress: () => router.push(`/delivery-chat/${props.id}`),
+    },
+    {
+      text: 'Acompanhar',
+    },
+  ]
 
-  const totalCostText = currency.format(totalCost)
-
-  const totalCostComponent = (
-    <StrongText>
-      {totalCostText}
-    </StrongText>
-  )
+  const cardProps: CardProps = {
+    title: props.storeName,
+    subtitle: `${props.appName} - ${totalItems} ${quantityTerm}`,
+    buttons: props.completed ? buttonsIfCompleted : buttonsIfActive,
+    leftText: currency.format(totalCost),
+  }
+  if (!props.completed) { // don't show the items if request is completed
+    cardProps.items = props.items.map(item => `${listMarker} ${item.title}`)
+  }
 
   return (
-    <Card
-      title={props.request.store}
-      subtitle={`${props.request.app} - ${totalItems} itens`}
-      leftContent={totalCostComponent}
-      bottomContent={cardBottomContent}
-    />
+    <Card {...cardProps} />
   )
 }
 export default RequestCard
-
-const styles = StyleSheet.create({
-  itemsContainer: {
-    gap: 8,
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 16,
-  },
-  cardBottomContentContainer: {
-    gap: 24,
-  },
-})

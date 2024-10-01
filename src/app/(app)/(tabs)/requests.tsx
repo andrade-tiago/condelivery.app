@@ -2,68 +2,50 @@ import Button, { ButtonProps, ButtonVariant } from "@/components/Button"
 import RequestCard from "@/components/RequestCard"
 import Colors from "@/constants/colors"
 import requests, { Request } from "@/content/requests"
-import { useRouter } from "expo-router"
 import React from "react"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
-type RequestsType = 'active' | 'completed'
+type RequestType = 'active' | 'completed'
 
 const RequestsScreen: React.FunctionComponent = () => {
-  const router = useRouter()
-  const [requestsTypeSelected, setRequestsTypeSelected] = React.useState<RequestsType>('active')
+  const [requestTypeSelected, setRequestTypeSelected] = React.useState<RequestType>('active')
 
   const requestList = requests
 
-  const getButtonVariant = (requestType: RequestsType): ButtonVariant => {
-    return requestType === requestsTypeSelected ? 'gradient' : 'outline'
+  const getButtonVariant = (requestType: RequestType): ButtonVariant => {
+    return requestType === requestTypeSelected ? 'gradient' : 'outline'
   }
 
-  const buttonsProps: ButtonProps[] = [
+  const filterButtonsProps: ButtonProps[] = [
     {
       text: 'Ativos',
       variant: getButtonVariant('active'),
-      onPress: () => setRequestsTypeSelected('active'),
+      onPress: () => setRequestTypeSelected('active'),
     },
     {
       text: 'Concluídos',
       variant: getButtonVariant('completed'),
-      onPress: () => setRequestsTypeSelected('completed'),
+      onPress: () => setRequestTypeSelected('completed'),
     },
   ]
-  const filtersButtons = buttonsProps.map((buttonProps, i) => (
+  const filterButtons = filterButtonsProps.map((buttonProps, i) => (
     <Button key={i} {...buttonProps} />
   ))
 
-  const requestsToDisplay = requests.filter(request => {
-    return (requestsTypeSelected === 'completed')
+  const requestsToDisplay = requestList.filter(request => {
+    return (requestTypeSelected === 'completed')
     ?  request.completed
     : !request.completed
   })
 
   const renderRequestCard: ListRenderItem<Request> = ({ item }) => {
-    const buttons: Omit<ButtonProps, 'variant'>[] =
-      requestsTypeSelected === 'active' ? [
-        {
-          text: 'Chat',
-          onPress: () => router.push(`/delivery-chat/${item.id}`),
-        },
-        {
-          text: 'Acompanhar',
-        },
-      ] : [
-        {
-          text: 'Pedir novamente',
-        },
-        {
-          text: 'Avaliado',
-        },
-      ]
-
     return (
       <RequestCard
-        request={item}
-        buttons={buttons}
-        showItems={requestsTypeSelected === 'active'}
+        appName={item.app}
+        completed={item.completed}
+        id={item.id}
+        items={item.items}
+        storeName={item.store}
       />
     )
   }
@@ -71,7 +53,7 @@ const RequestsScreen: React.FunctionComponent = () => {
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
-        {filtersButtons}
+        {filterButtons}
       </View>
 
       <FlatList

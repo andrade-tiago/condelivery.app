@@ -1,5 +1,5 @@
 import Button, { ButtonProps, ButtonVariant } from "@/components/Button"
-import Card from "@/components/Card"
+import Card, { CardButtonProps } from "@/components/Card"
 import { StrongText } from "@/components/Text"
 import Colors from "@/constants/colors"
 import receivers, { Receiver } from "@/content/receivers"
@@ -32,34 +32,25 @@ const ReceiversScreen: React.FunctionComponent = () => {
     },
   ]
 
-  const filtersButtons: React.JSX.Element[] = filterButtonsProps.map((buttonProps, i) => (
+  const filtersButtons = filterButtonsProps.map((buttonProps, i) => (
     <Button key={i} {...buttonProps} />
   ))
 
   const renderReceiverCard: ListRenderItem<Receiver> = ({ item }) => {
-    const bottomContent = (
-      <View style={styles.cardBottomContentContainer}>
-        <Button
-          text="Chat"
-          onPress={() => router.push(`/delivery-chat/${item.id}`)}
-          variant="white"
-        />
-      </View>
-    )
-
-    const leftContent = (
-      <StrongText>
-        #{item.id}
-      </StrongText>
-    )
+    const buttons: CardButtonProps[] = [
+      {
+        text: 'Chat',
+        onPress: () => router.push(`/delivery-chat/${item.id}`),
+      },
+    ]
 
     return (
       <Card
         imgURL={item.imgURL}
         title={item.name}
         subtitle={item.locale}
-        leftContent={leftContent}
-        bottomContent={bottomContent}
+        leftText={'#' + item.id}
+        buttons={buttons}
       />
     )
   }
