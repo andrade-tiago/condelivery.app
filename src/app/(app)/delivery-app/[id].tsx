@@ -4,7 +4,7 @@ import { H2, PrimaryText, SmallText } from "@/components/Text"
 import Colors from "@/constants/colors"
 import restaurants, { Restaurant } from "@/content/restaurants"
 import { MaterialIcons } from "@expo/vector-icons"
-import { useLocalSearchParams, useNavigation } from "expo-router"
+import { Link, useLocalSearchParams, useNavigation } from "expo-router"
 import React from "react"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
@@ -17,12 +17,17 @@ const Home: React.FunctionComponent = () => {
   const params = useLocalSearchParams<SearchParams>()
 
   const items = restaurants
-  const renderItem: ListRenderItem<Restaurant> = ({ item }) => (
-    <ProfileCard
-      imgURL={item.imgURL}
-      title={item.name}
-    />
-  )
+
+  const renderItem: ListRenderItem<Restaurant> = ({ item }) => {
+    return (
+      <Link href={`/(app)/restaurant/${item.id}`}>
+        <ProfileCard
+          imgURL={item.imgURL}
+          title={item.name}
+        />
+      </Link>
+    )
+  }
 
   React.useEffect(() => {
     navigation.setOptions({ headerTitle: params.name })
