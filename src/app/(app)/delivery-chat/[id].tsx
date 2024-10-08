@@ -16,20 +16,26 @@ const DeliveryChat: React.FunctionComponent = () => {
 
   const renderMessage: ListRenderItem<Message> = ({ item, index }) => {
     return (
-      <ChatMessage {...item}
+      <ChatMessage
+        role={item.role}
+        text={item.text}
+        time={item.time}
         rounded={messages[index - 1]?.role === item.role}
         showTime={messages[index + 1]?.role !== item.role}
       />
     )
   }
 
-  const handleSend = () => {
-    const messageContent = newMessageText.trim()
+  const extractMessageContent = (text: string): string => {
+    const messageContent = text.trim()
 
-    if (!messageContent) {
-      return
-    }
+    return messageContent
+  }
 
+  const messageContent = extractMessageContent(newMessageText)
+  const isMessageValid = !!messageContent
+
+  const handleSendMessage = () => {
     const newMessage: Message = {
       role: 'user',
       text: messageContent,
@@ -56,8 +62,8 @@ const DeliveryChat: React.FunctionComponent = () => {
         />
         <Feather name="send"
           size={32}
-          color={Colors.primary[300]}
-          onPress={handleSend}
+          color={isMessageValid ? Colors.primary[300] : Colors.neutral[300]}
+          onPress={isMessageValid ? handleSendMessage : undefined}
         />
       </Input.Root>
     </View>
