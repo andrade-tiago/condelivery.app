@@ -1,4 +1,4 @@
-type DeliveryApp = {
+export type DeliveryApp = {
   id: number,
   name: string,
   logoImgURL: string,

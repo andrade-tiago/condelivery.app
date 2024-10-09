@@ -2,26 +2,29 @@ import Banner from "@/components/Banner"
 import ProfileCard from "@/components/ProfileCard"
 import { H2, PrimaryText, SmallText } from "@/components/Text"
 import Colors from "@/constants/colors"
-import deliveryApps from "@/content/delivery-apps"
+import deliveryApps, { DeliveryApp } from "@/content/delivery-apps"
 import { MaterialIcons, Octicons } from "@expo/vector-icons"
 import { Link } from "expo-router"
-import { StyleSheet, View } from "react-native"
+import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
 const Home: React.FunctionComponent = () => {
-  const deliveryAppsCards: React.JSX.Element[] =
-    deliveryApps.map((app) => (
-      <Link key={app.id}
+  const apps = deliveryApps
+
+  const renderDeliveryApps: ListRenderItem<DeliveryApp> = ({ item }) => {
+    return (
+      <Link key={item.id}
         href={{
           pathname: '/delivery-app/[id]',
-          params: { id: app.id, name: app.name },
+          params: { id: item.id, name: item.name },
         }}
       >
         <ProfileCard
-          imgURL={app.logoImgURL}
-          title={app.name}
+          imgURL={item.logoImgURL}
+          title={item.name}
         />
       </Link>
-    ))
+    )
+  }
 
   return (
     <View style={styles.screen}>
@@ -64,9 +67,13 @@ const Home: React.FunctionComponent = () => {
           Apps disponíveis
         </H2>
 
-        <View style={styles.deliveryAppsList}>
-          {deliveryAppsCards}
-        </View>
+        <FlatList
+          data={apps}
+          renderItem={renderDeliveryApps}
+          horizontal
+          style={styles.deliveryAppsList}
+          contentContainerStyle={styles.deliveryAppsListInnerContainer}
+        />
       </View>
     </View>
   )
@@ -94,7 +101,11 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   deliveryAppsList: {
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    width: '100%',
+  },
+  deliveryAppsListInnerContainer: {
+    minWidth: '100%',
+    justifyContent: 'center',
+    gap: 24,
   },
 })
