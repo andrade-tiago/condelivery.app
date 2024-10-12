@@ -2,13 +2,13 @@ import { StyleSheet, View } from "react-native"
 import { PrimaryText, SecondaryText } from "../Text"
 import dayjs from '@/lib/dayjs'
 
-type NotificationProps = {
+export type NotificationProps = {
   text: string,
   time: Date,
 }
 
 const Notification: React.FunctionComponent<NotificationProps> = (props) => {
-  const relativeTime: string = dayjs().to(props.time)
+  const timeText: string = dayjs(props.time).calendar()
 
   return (
     <View style={styles.wrapper}>
@@ -19,7 +19,7 @@ const Notification: React.FunctionComponent<NotificationProps> = (props) => {
         {props.text}
       </PrimaryText>
       <SecondaryText>
-        {relativeTime}
+        {timeText}
       </SecondaryText>
     </View>
   )
