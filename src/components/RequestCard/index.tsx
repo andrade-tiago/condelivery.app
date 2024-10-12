@@ -39,6 +39,7 @@ const RequestCard: React.FunctionComponent<RequestCardProps> = (props) => {
     },
     {
       text: 'Acompanhar',
+      onPress: () => router.push(`/request-status/${props.id}`),
     },
   ]
 

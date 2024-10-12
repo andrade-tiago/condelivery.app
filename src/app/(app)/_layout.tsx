@@ -28,6 +28,10 @@ const AppLayout: React.FunctionComponent = () => {
         options={{ headerTitle: 'Chat' }}
       />
       <Stack.Screen
+        name="request-status/[id]"
+        options={{ headerTitle: 'Status do Pedido' }}
+      />
+      <Stack.Screen
         name="notifications"
         options={{ headerTitle: 'Notificações' }}
       />
