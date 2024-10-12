@@ -10,6 +10,7 @@ export type RequestCardProps = {
   completed: boolean;
   id: number;
   storeImgURL: string;
+  hideButtons?: boolean;
 }
 
 const RequestCard: React.FunctionComponent<RequestCardProps> = (props) => {
@@ -44,12 +45,14 @@ const RequestCard: React.FunctionComponent<RequestCardProps> = (props) => {
   const cardProps: CardProps = {
     title: props.storeName,
     subtitle: `${props.appName} - ${totalItems} ${quantityTerm}`,
-    buttons: props.completed ? buttonsIfCompleted : buttonsIfActive,
     leftText: currency.format(totalCost),
     imgURL: props.storeImgURL,
   }
   if (!props.completed) { // don't show the items if request is completed
     cardProps.items = props.items.map(item => `${listMarker} ${item.title}`)
+  }
+  if (!props.hideButtons) {
+    cardProps.buttons = props.completed ? buttonsIfCompleted : buttonsIfActive
   }
 
   return (
