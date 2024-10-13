@@ -32,6 +32,10 @@ const AppLayout: React.FunctionComponent = () => {
         options={{ headerTitle: 'Status do Pedido' }}
       />
       <Stack.Screen
+        name="request-details/[id]"
+        options={{ headerTitle: 'Detalhes do Pedido' }}
+      />
+      <Stack.Screen
         name="notifications"
         options={{ headerTitle: 'Notificações' }}
       />

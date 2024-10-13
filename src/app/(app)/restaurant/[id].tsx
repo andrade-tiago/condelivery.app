@@ -21,6 +21,7 @@ const RestaurantScreen: React.FunctionComponent = () => {
   const renderProductCard: ListRenderItem<Product> = ({ item }) => {
     return (
       <ProductCard
+        productId={item.id}
         description={item.description}
         imgURL={item.imgURL}
         title={item.name}

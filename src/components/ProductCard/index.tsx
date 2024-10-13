@@ -1,16 +1,28 @@
 import Colors from "@/constants/colors"
+import { useRouter } from "expo-router"
 import { DimensionValue, Image, StyleSheet, Text, View } from "react-native"
 
 type ProductCardProps = {
+  productId: number,
   imgURL: string,
   title: string,
   description: string,
   width?: DimensionValue,
+  blockPressEvent?: boolean,
 }
 
 const ProductCard: React.FunctionComponent<ProductCardProps> = (props) => {
+  const router = useRouter()
+
   return (
-    <View style={{ ...styles.container, width: props.width || '100%' }}>
+    <View
+      style={{ ...styles.container, width: props.width || '100%' }}
+      onTouchEnd={
+        props.blockPressEvent
+          ? undefined
+          : () => router.push(`/(app)/request-details/${props.productId}`)
+      }
+    >
       <Image
         source={{ uri: props.imgURL }}
         style={styles.image}
