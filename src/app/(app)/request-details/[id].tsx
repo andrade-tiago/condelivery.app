@@ -1,7 +1,7 @@
 import Button from "@/components/Button"
 import Checkbox from "@/components/Checkbox"
 import ProductCard from "@/components/ProductCard"
-import { BoldText, PrimaryText, StrongText } from "@/components/Text"
+import { BoldText, PrimaryText, SecondaryText, StrongText } from "@/components/Text"
 import Colors from "@/constants/colors"
 import products, { ProductAdditional } from "@/content/products"
 import currency from "@/lib/intl-currency"
@@ -43,6 +43,12 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
       </View>
     )
   }
+
+  const emptyListComponent = (
+    <SecondaryText>
+      Nenhum adicional encontrado.
+    </SecondaryText>
+  )
 
   const handleAdd = () => {
     setQuantity(state => state + 1)
@@ -95,6 +101,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
           renderItem={renderProductAdditionalItem}
           style={styles.additionalProductsList}
           contentContainerStyle={styles.additionalProductsListInnerContainer}
+          ListEmptyComponent={emptyListComponent}
         />
       </View>
 
