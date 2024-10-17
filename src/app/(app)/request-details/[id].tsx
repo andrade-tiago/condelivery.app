@@ -7,7 +7,7 @@ import products, { ProductAdditional } from "@/content/products"
 import currency from "@/lib/intl-currency"
 import { AntDesign } from "@expo/vector-icons"
 import { useLocalSearchParams } from "expo-router"
-import React, { startTransition } from "react"
+import React from "react"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
 type Params = {
