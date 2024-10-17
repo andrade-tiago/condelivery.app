@@ -16,13 +16,31 @@ type Params = {
 
 const RequestDetailsScreen: React.FunctionComponent = () => {
   const params = useLocalSearchParams<Params>()
-  const [quantity, setQuantity] = React.useState(1)
-
   const productId = Number(params.id)
   const product = products.find(product => product.id === productId)!
 
+  const [quantity, setQuantity] = React.useState<number>(1)
+  const [additionalItemsIDs, setAdditionalItemsIDs] = React.useState<number[]>([])
+
   const unitaryPriceText = currency.format(product.price)
   const quantityText = quantity.toString().padStart(2, '0')
+
+  const addToQuantity = () => {
+    setQuantity(state => state + 1)
+  }
+  const subtractFromQuantity = () => {
+    if (quantity === 1) { return }
+
+    setQuantity(state => state - 1)
+  }
+
+  const handleCheckAdditionalItem = (itemId: number) => {
+    if (additionalItemsIDs.includes(itemId)) {
+      setAdditionalItemsIDs(state => state.filter(id => id !== itemId))
+    } else {
+      setAdditionalItemsIDs(state => [...state, itemId])
+    }
+  }
 
   const renderProductAdditionalItem: ListRenderItem<ProductAdditional> = ({ item }) => {
     const itemPriceText = currency.format(item.price)
@@ -38,7 +56,10 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
             {itemPriceText}
           </PrimaryText>
 
-          <Checkbox />
+          <Checkbox
+            onPress={() => handleCheckAdditionalItem(item.id)}
+            checked={additionalItemsIDs.includes(item.id)}
+          />
         </View>
       </View>
     )
@@ -49,15 +70,6 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
       Nenhum adicional encontrado.
     </SecondaryText>
   )
-
-  const handleAdd = () => {
-    setQuantity(state => state + 1)
-  }
-  const handleSubtract = () => {
-    if (quantity === 1) { return }
-
-    setQuantity(state => state - 1)
-  }
 
   return (
     <View style={styles.screen}>
@@ -76,7 +88,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
           <AntDesign name="minus"
             size={20}
             color={Colors.primary[300]}
-            onPress={handleSubtract}
+            onPress={subtractFromQuantity}
           />
 
           <BoldText>
@@ -86,7 +98,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
           <AntDesign name="plus"
             size={20}
             color={Colors.primary[300]}
-            onPress={handleAdd}
+            onPress={addToQuantity}
           />
         </View>
       </View>
