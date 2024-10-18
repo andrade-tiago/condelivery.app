@@ -34,12 +34,12 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
     setQuantity(state => state - 1)
   }
 
-  const handleCheckAdditionalItem = (itemId: number) => {
-    if (additionalItemsIDs.includes(itemId)) {
-      setAdditionalItemsIDs(state => state.filter(id => id !== itemId))
-    } else {
-      setAdditionalItemsIDs(state => [...state, itemId])
-    }
+  const handleCheckAdditionalItem = (itemId: number) =>{
+    setAdditionalItemsIDs(
+      state => state.includes(itemId)
+        ? state.filter(id => id !== itemId)
+        : [...state, itemId]
+    )
   }
 
   const renderProductAdditionalItem: ListRenderItem<ProductAdditional> = ({ item }) => {
