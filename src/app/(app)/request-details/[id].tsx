@@ -1,9 +1,11 @@
 import Button from "@/components/Button"
 import Checkbox from "@/components/Checkbox"
+import LoadingScreen from "@/components/LoadingScreen"
 import ProductCard from "@/components/ProductCard"
 import { BoldText, PrimaryText, SecondaryText, StrongText } from "@/components/Text"
 import Colors from "@/constants/colors"
 import products, { ProductAdditional } from "@/content/products"
+import useProduct from "@/hooks/use-product"
 import currency from "@/lib/intl-currency"
 import { AntDesign } from "@expo/vector-icons"
 import { useLocalSearchParams } from "expo-router"
@@ -17,22 +19,21 @@ type Params = {
 const RequestDetailsScreen: React.FunctionComponent = () => {
   const params = useLocalSearchParams<Params>()
   const productId = Number(params.id)
-  const product = products.find(product => product.id === productId)!
 
-  const [quantity, setQuantity] = React.useState<number>(1)
+  const product = useProduct({ id: productId })
+
+  const [productQuantity, setProductQuantity] = React.useState<number>(1)
   const [additionalItemsIDs, setAdditionalItemsIDs] = React.useState<number[]>([])
 
-  const unitaryPriceText = currency.format(product.price)
-  const quantityText = quantity.toString().padStart(2, '0')
-
   const addToQuantity = () => {
-    setQuantity(state => state + 1)
+    setProductQuantity(state => state + 1)
   }
   const subtractFromQuantity = () => {
-    if (quantity === 1) { return }
+    if (productQuantity === 1) { return }
 
-    setQuantity(state => state - 1)
+    setProductQuantity(state => state - 1)
   }
+  const productQuantityText = productQuantity.toString().padStart(2, '0')
 
   const handleCheckAdditionalItem = (itemId: number) =>{
     setAdditionalItemsIDs(
@@ -43,7 +44,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
   }
 
   const renderProductAdditionalItem: ListRenderItem<ProductAdditional> = ({ item }) => {
-    const itemPriceText = currency.format(item.price)
+    const itemUnitaryPriceText = currency.format(item.price)
 
     return (
       <View style={styles.row}>
@@ -53,7 +54,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
 
         <View style={styles.group}>
           <PrimaryText>
-            {itemPriceText}
+            {itemUnitaryPriceText}
           </PrimaryText>
 
           <Checkbox
@@ -71,17 +72,23 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
     </SecondaryText>
   )
 
+  if (product.isLoading) {
+    return <LoadingScreen />
+  }
+
+  const productUnitaryPriceText = currency.format(product.data!.price)
+
   return (
     <View style={styles.screen}>
       <ProductCard
-        productId={productId}
-        description={product.description}
-        imgURL={product.imgURL}
-        title={product.name}
+        productId={product.data!.id}
+        description={product.data!.description}
+        imgURL={product.data!.imgURL}
+        title={product.data!.name}
       />
       <View style={styles.row}>
         <StrongText style={styles.unitaryPriceText}>
-          {unitaryPriceText}
+          {productUnitaryPriceText}
         </StrongText>
 
         <View style={styles.group}>
@@ -92,7 +99,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
           />
 
           <BoldText>
-            {quantityText}
+            {productQuantityText}
           </BoldText>
 
           <AntDesign name="plus"
@@ -109,7 +116,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
         </BoldText>
 
         <FlatList
-          data={product.additional}
+          data={product.data!.additional}
           renderItem={renderProductAdditionalItem}
           style={styles.additionalProductsList}
           contentContainerStyle={styles.additionalProductsListInnerContainer}
