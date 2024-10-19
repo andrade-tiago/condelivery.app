@@ -1,7 +1,9 @@
+import LoadingScreen from "@/components/LoadingScreen"
 import ProductCard from "@/components/ProductCard"
 import Colors from "@/constants/colors"
 import products, { Product } from "@/content/products"
 import restaurants from "@/content/restaurants"
+import useRestaurant from "@/hooks/use-restaurant"
 import { useLocalSearchParams, useNavigation } from "expo-router"
 import React from "react"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
@@ -12,11 +14,12 @@ type Params = {
 
 const RestaurantScreen: React.FunctionComponent = () => {
   const params = useLocalSearchParams<Params>()
+  const restaurantId = Number(params.id)
+  
   const navigation = useNavigation()
 
+  const restaurant = useRestaurant({ id: restaurantId })
   const items = products
-  const restaurantId = Number(params.id)
-  const restaurant = restaurants.find(restaurant => restaurant.id === restaurantId)
 
   const renderProductCard: ListRenderItem<Product> = ({ item }) => {
     return (
@@ -29,8 +32,12 @@ const RestaurantScreen: React.FunctionComponent = () => {
     )
   }
 
+  if (restaurant.isLoading) {
+    return <LoadingScreen />
+  }
+
   React.useEffect(() => {
-    navigation.setOptions({ headerTitle: restaurant!.name })
+    navigation.setOptions({ headerTitle: restaurant.data!.name })
   }, [])
 
   return (
