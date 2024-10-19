@@ -1,8 +1,10 @@
 import Banner from "@/components/Banner"
+import LoadingScreen from "@/components/LoadingScreen"
 import ProfileCard from "@/components/ProfileCard"
 import { H2, PrimaryText, SmallText } from "@/components/Text"
 import Colors from "@/constants/colors"
-import restaurants, { Restaurant } from "@/content/restaurants"
+import { Restaurant } from "@/content/restaurants"
+import useRestaurants from "@/hooks/use-restaurants"
 import { MaterialIcons } from "@expo/vector-icons"
 import { Link, useLocalSearchParams, useNavigation } from "expo-router"
 import React from "react"
@@ -16,9 +18,9 @@ const Home: React.FunctionComponent = () => {
   const navigation = useNavigation()
   const params = useLocalSearchParams<SearchParams>()
 
-  const items = restaurants
+  const restaurants = useRestaurants()
 
-  const renderItem: ListRenderItem<Restaurant> = ({ item }) => {
+  const renderRestaurantCardItem: ListRenderItem<Restaurant> = ({ item }) => {
     return (
       <Link href={`/(app)/restaurant/${item.id}`}>
         <ProfileCard
@@ -33,6 +35,9 @@ const Home: React.FunctionComponent = () => {
     navigation.setOptions({ headerTitle: params.name })
   }, [])
 
+  if (restaurants.isLoading) {
+    return <LoadingScreen />
+  }
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
@@ -68,8 +73,8 @@ const Home: React.FunctionComponent = () => {
         </H2>
 
         <FlatList horizontal
-          data={items}
-          renderItem={renderItem}
+          data={restaurants.data}
+          renderItem={renderRestaurantCardItem}
           style={styles.restaurantsList}
           contentContainerStyle={styles.restaurantsListContent}
           showsHorizontalScrollIndicator={false}
