@@ -1,19 +1,18 @@
 import Button, { ButtonProps, ButtonVariant } from "@/components/Button"
 import Card, { CardButtonProps } from "@/components/Card"
-import { StrongText } from "@/components/Text"
 import Colors from "@/constants/colors"
-import receivers, { Receiver } from "@/content/receivers"
+import { Receiver } from "@/content/receivers"
+import useReceivers from "@/hooks/use-receivers"
 import { useRouter } from "expo-router"
-import React from "react"
+import { useState } from "react"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
 type RequestsType = 'active' | 'completed'
 
 const ReceiversScreen: React.FunctionComponent = () => {
-  const [requestsTypeSelected, setRequestsTypeSelected] = React.useState<RequestsType>('active')
+  const [requestsTypeSelected, setRequestsTypeSelected] = useState<RequestsType>('active')
+  const receiverList = useReceivers()
   const router = useRouter()
-
-  const receiverList = receivers
 
   const getButtonVariant = (requestType: RequestsType): ButtonVariant => {
     return requestType === requestsTypeSelected ? 'gradient' : 'outline'
@@ -62,7 +61,7 @@ const ReceiversScreen: React.FunctionComponent = () => {
       </View>
 
       <FlatList
-        data={receiverList}
+        data={receiverList.data}
         renderItem={renderReceiverCard}
         style={styles.cardList}
         contentContainerStyle={styles.cardListContentContainer}
