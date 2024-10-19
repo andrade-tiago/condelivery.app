@@ -1,8 +1,8 @@
 import LoadingScreen from "@/components/LoadingScreen"
 import ProductCard from "@/components/ProductCard"
 import Colors from "@/constants/colors"
-import products, { Product } from "@/content/products"
-import restaurants from "@/content/restaurants"
+import { Product } from "@/content/products"
+import useProducts from "@/hooks/use-products"
 import useRestaurant from "@/hooks/use-restaurant"
 import { useLocalSearchParams, useNavigation } from "expo-router"
 import React from "react"
@@ -19,7 +19,7 @@ const RestaurantScreen: React.FunctionComponent = () => {
   const navigation = useNavigation()
 
   const restaurant = useRestaurant({ id: restaurantId })
-  const items = products
+  const products = useProducts()
 
   const renderProductCard: ListRenderItem<Product> = ({ item }) => {
     return (
@@ -32,7 +32,7 @@ const RestaurantScreen: React.FunctionComponent = () => {
     )
   }
 
-  if (restaurant.isLoading) {
+  if (restaurant.isLoading || products.isLoading) {
     return <LoadingScreen />
   }
 
@@ -43,7 +43,7 @@ const RestaurantScreen: React.FunctionComponent = () => {
   return (
     <View style={styles.screen}>
       <FlatList
-        data={items}
+        data={products.data}
         renderItem={renderProductCard}
         style={styles.productList}
         contentContainerStyle={styles.productListInnerContainer}
