@@ -1,16 +1,18 @@
 import Banner from "@/components/Banner"
+import LoadingScreen from "@/components/LoadingScreen"
 import ProfileCard from "@/components/ProfileCard"
 import { H2, PrimaryText, SmallText } from "@/components/Text"
 import Colors from "@/constants/colors"
-import deliveryApps, { DeliveryApp } from "@/content/delivery-apps"
+import { DeliveryApp } from "@/content/delivery-apps"
+import useDeliveryApps from "@/hooks/use-delivery-apps"
 import { MaterialIcons, Octicons } from "@expo/vector-icons"
 import { Link } from "expo-router"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
 const Home: React.FunctionComponent = () => {
-  const apps = deliveryApps
+  const deliveryApps = useDeliveryApps()
 
-  const renderDeliveryApps: ListRenderItem<DeliveryApp> = ({ item }) => {
+  const renderDeliveryApp: ListRenderItem<DeliveryApp> = ({ item }) => {
     return (
       <Link key={item.id}
         href={{
@@ -26,6 +28,9 @@ const Home: React.FunctionComponent = () => {
     )
   }
 
+  if (deliveryApps.isLoading) {
+    return <LoadingScreen />
+  }
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
@@ -68,8 +73,8 @@ const Home: React.FunctionComponent = () => {
         </H2>
 
         <FlatList
-          data={apps}
-          renderItem={renderDeliveryApps}
+          data={deliveryApps.items}
+          renderItem={renderDeliveryApp}
           horizontal
           style={styles.deliveryAppsList}
           contentContainerStyle={styles.deliveryAppsListInnerContainer}
