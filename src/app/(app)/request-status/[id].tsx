@@ -1,8 +1,9 @@
+import LoadingScreen from "@/components/LoadingScreen"
 import Notification, { NotificationProps } from "@/components/Notification"
 import RequestCard from "@/components/RequestCard"
 import { BoldText, SecondaryText } from "@/components/Text"
 import Colors from "@/constants/colors"
-import requests from "@/content/requests"
+import useRequest from "@/hooks/use-request"
 import { Feather } from "@expo/vector-icons"
 import { useLocalSearchParams } from "expo-router"
 import { StyleSheet, View } from "react-native"
@@ -13,9 +14,9 @@ type Params = {
 
 const RequestStatusScreen: React.FunctionComponent = () => {
   const params = useLocalSearchParams<Params>()
-
   const requestId = Number(params.id)
-  const request = requests.find(request => request.id === requestId)!
+  
+  const request = useRequest({ id: requestId })
 
   const notificationsProps: NotificationProps[] = [
     { text: 'Chegou no condomínio', time: new Date() },
@@ -26,15 +27,18 @@ const RequestStatusScreen: React.FunctionComponent = () => {
     return <Notification key={i} {...props} />
   })
 
+  if (request.isLoading) {
+    return <LoadingScreen />
+  }
   return (
     <View style={styles.screen}>
       <RequestCard
-        appName={request.app}
-        completed={request.completed}
-        id={request.id}
-        items={request.items}
-        storeImgURL={request.storeImgURL}
-        storeName={request.store}
+        appName={request.data!.app}
+        completed={request.data!.completed}
+        id={request.data!.id}
+        items={request.data!.items}
+        storeImgURL={request.data!.storeImgURL}
+        storeName={request.data!.store}
         hideButtons
       />
 
