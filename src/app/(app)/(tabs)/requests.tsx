@@ -1,16 +1,17 @@
 import Button, { ButtonProps, ButtonVariant } from "@/components/Button"
+import LoadingScreen from "@/components/LoadingScreen"
 import RequestCard from "@/components/RequestCard"
 import Colors from "@/constants/colors"
-import requests, { Request } from "@/content/requests"
+import { Request } from "@/content/requests"
+import useRequests from "@/hooks/use-requests"
 import React from "react"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
 type RequestType = 'active' | 'completed'
 
 const RequestsScreen: React.FunctionComponent = () => {
+  const requests = useRequests()
   const [requestTypeSelected, setRequestTypeSelected] = React.useState<RequestType>('active')
-
-  const requestList = requests
 
   const getButtonVariant = (requestType: RequestType): ButtonVariant => {
     return requestType === requestTypeSelected ? 'gradient' : 'outline'
@@ -32,12 +33,6 @@ const RequestsScreen: React.FunctionComponent = () => {
     <Button key={i} {...buttonProps} />
   ))
 
-  const requestsToDisplay = requestList.filter(request => {
-    return (requestTypeSelected === 'completed')
-    ?  request.completed
-    : !request.completed
-  })
-
   const renderRequestCard: ListRenderItem<Request> = ({ item }) => {
     return (
       <RequestCard
@@ -50,6 +45,14 @@ const RequestsScreen: React.FunctionComponent = () => {
       />
     )
   }
+
+  if (requests.isLoading) {
+    return <LoadingScreen />
+  }
+
+  const requestsToDisplay = requests.data!.filter(request => {
+    return (requestTypeSelected === 'completed') ? request.completed : !request.completed
+  })
 
   return (
     <View style={styles.screen}>
