@@ -78,6 +78,20 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
 
   const productUnitaryPriceText = currency.format(product.data!.price)
 
+  const unitaryProductAdditionalItemsTotalCost = additionalItemsIDs.reduce((sum, id) => {
+    const additionalItem = product.data!.additional.find(
+      additional => additional.id === id
+    )!
+
+    return sum + additionalItem.price
+  }, 0)
+
+  const totalCost =
+    (product.data!.price * productQuantity)
+    + (unitaryProductAdditionalItemsTotalCost * productQuantity)
+
+  const totalCostText = currency.format(totalCost)
+
   return (
     <View style={styles.screen}>
       <ProductCard
@@ -122,6 +136,15 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
           contentContainerStyle={styles.additionalProductsListInnerContainer}
           ListEmptyComponent={emptyListComponent}
         />
+      </View>
+
+      <View style={styles.row}>
+        <PrimaryText>
+          Total:
+        </PrimaryText>
+        <BoldText>
+          {totalCostText}
+        </BoldText>
       </View>
 
       <Button
