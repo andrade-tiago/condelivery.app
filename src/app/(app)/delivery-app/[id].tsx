@@ -1,17 +1,18 @@
+import AddressArea from "@/components/AddressArea"
 import Banner from "@/components/Banner"
 import LoadingScreen from "@/components/LoadingScreen"
 import ProductCard from "@/components/ProductCard"
 import ProfileCard from "@/components/ProfileCard"
-import { H2, PrimaryText, SmallText } from "@/components/Text"
+import SearchBar from "@/components/SearchBar"
+import { H2 } from "@/components/Text"
 import Colors from "@/constants/colors"
 import { Product } from "@/content/products"
 import { Restaurant } from "@/content/restaurants"
 import useProducts from "@/hooks/use-products"
 import useRestaurants from "@/hooks/use-restaurants"
-import { MaterialIcons } from "@expo/vector-icons"
 import { Link, useLocalSearchParams, useNavigation } from "expo-router"
 import React from "react"
-import { FlatList, ListRenderItem, StyleSheet, useWindowDimensions, View } from "react-native"
+import { FlatList, ListRenderItem, ScrollView, StyleSheet, useWindowDimensions, View } from "react-native"
 
 type SearchParams = {
   name: string,
@@ -56,25 +57,12 @@ const Home: React.FunctionComponent = () => {
     return <LoadingScreen />
   }
   return (
-    <View style={styles.screen}>
+    <ScrollView style={styles.screen} contentContainerStyle={styles.screenContentContainer}>
       <View style={styles.header}>
-        <View style={styles.location}>
-          <SmallText>
-            Localização atual{" "}
-            <MaterialIcons name="keyboard-arrow-down"
-              size={10}
-              color={Colors.neutral[700]}
-            />
-          </SmallText>
-
-          <PrimaryText
-            numberOfLines={1}
-            style={{ maxWidth: 200 }}
-          >
-            Avenida Santa Fé, 93 - Recanto Regina
-          </PrimaryText>
-        </View>
+        <AddressArea />
       </View>
+
+      <SearchBar />
 
       <Banner
         title="Alma de pastel"
@@ -111,7 +99,7 @@ const Home: React.FunctionComponent = () => {
           showsHorizontalScrollIndicator={false}
         />
       </View>
-    </View>
+    </ScrollView>
   )
 }
 export default Home
@@ -119,8 +107,10 @@ export default Home
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    padding: 16,
     backgroundColor: Colors.white[0],
+  },
+  screenContentContainer: {
+    padding: 16,
     gap: 24,
   },
   header: {
@@ -128,9 +118,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  location: {
-    gap: 8,
   },
   section: {
     width: '100%',
