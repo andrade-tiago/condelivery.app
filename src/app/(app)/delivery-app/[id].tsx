@@ -1,14 +1,17 @@
 import Banner from "@/components/Banner"
 import LoadingScreen from "@/components/LoadingScreen"
+import ProductCard from "@/components/ProductCard"
 import ProfileCard from "@/components/ProfileCard"
 import { H2, PrimaryText, SmallText } from "@/components/Text"
 import Colors from "@/constants/colors"
+import { Product } from "@/content/products"
 import { Restaurant } from "@/content/restaurants"
+import useProducts from "@/hooks/use-products"
 import useRestaurants from "@/hooks/use-restaurants"
 import { MaterialIcons } from "@expo/vector-icons"
 import { Link, useLocalSearchParams, useNavigation } from "expo-router"
 import React from "react"
-import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
+import { FlatList, ListRenderItem, StyleSheet, useWindowDimensions, View } from "react-native"
 
 type SearchParams = {
   name: string,
@@ -17,8 +20,10 @@ type SearchParams = {
 const Home: React.FunctionComponent = () => {
   const navigation = useNavigation()
   const params = useLocalSearchParams<SearchParams>()
+  const { width: screenWidth } = useWindowDimensions()
 
   const restaurants = useRestaurants()
+  const products = useProducts()
 
   const renderRestaurantCardItem: ListRenderItem<Restaurant> = ({ item }) => {
     return (
@@ -28,6 +33,18 @@ const Home: React.FunctionComponent = () => {
           title={item.name}
         />
       </Link>
+    )
+  }
+
+  const renderProductCardItem: ListRenderItem<Product> = ({ item }) => {
+    return (
+      <ProductCard
+        description={item.description}
+        imgURL={item.imgURL}
+        productId={item.id}
+        title={item.name}
+        width={screenWidth * .8}
+      />
     )
   }
 
@@ -67,7 +84,7 @@ const Home: React.FunctionComponent = () => {
         backgroundColor={Colors.success[600]}
       />
 
-      <View style={styles.deliveryAppsSection}>
+      <View style={styles.section}>
         <H2>
           Restaurantes
         </H2>
@@ -75,8 +92,22 @@ const Home: React.FunctionComponent = () => {
         <FlatList horizontal
           data={restaurants.data}
           renderItem={renderRestaurantCardItem}
-          style={styles.restaurantsList}
-          contentContainerStyle={styles.restaurantsListContent}
+          style={styles.horizontalList}
+          contentContainerStyle={styles.horizontalListContentContainer}
+          showsHorizontalScrollIndicator={false}
+        />
+      </View>
+
+      <View style={styles.section}>
+        <H2>
+          Pratos
+        </H2>
+
+        <FlatList horizontal
+          data={products.data}
+          renderItem={renderProductCardItem}
+          style={styles.horizontalList}
+          contentContainerStyle={styles.horizontalListContentContainer}
           showsHorizontalScrollIndicator={false}
         />
       </View>
@@ -101,19 +132,15 @@ const styles = StyleSheet.create({
   location: {
     gap: 8,
   },
-  deliveryAppsSection: {
+  section: {
     width: '100%',
     gap: 12,
   },
-  deliveryAppsList: {
-    flexDirection: 'row',
-    justifyContent: 'space-around'
-  },
-  restaurantsList: {
+  horizontalList: {
     width: '100%',
     overflow: 'visible',
   },
-  restaurantsListContent: {
+  horizontalListContentContainer: {
     gap: 24,
   },
 })
