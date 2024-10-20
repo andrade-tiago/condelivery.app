@@ -99,6 +99,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
         description={product.data!.description}
         imgURL={product.data!.imgURL}
         title={product.data!.name}
+        blockPressEvent
       />
       <View style={styles.row}>
         <StrongText style={styles.unitaryPriceText}>
