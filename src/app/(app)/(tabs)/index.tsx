@@ -1,11 +1,12 @@
+import AddressArea from "@/components/AddressArea"
 import Banner from "@/components/Banner"
 import LoadingScreen from "@/components/LoadingScreen"
 import ProfileCard from "@/components/ProfileCard"
-import { H2, PrimaryText, SmallText } from "@/components/Text"
+import { H2 } from "@/components/Text"
 import Colors from "@/constants/colors"
 import { DeliveryApp } from "@/content/delivery-apps"
 import useDeliveryApps from "@/hooks/use-delivery-apps"
-import { MaterialIcons, Octicons } from "@expo/vector-icons"
+import { Octicons } from "@expo/vector-icons"
 import { Link } from "expo-router"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
@@ -34,22 +35,7 @@ const Home: React.FunctionComponent = () => {
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
-        <View style={styles.location}>
-          <SmallText>
-            Localização atual{" "}
-            <MaterialIcons name="keyboard-arrow-down"
-              size={10}
-              color={Colors.neutral[700]}
-            />
-          </SmallText>
-
-          <PrimaryText
-            numberOfLines={1}
-            style={{ maxWidth: 200 }}
-          >
-            Avenida Santa Fé, 93 - Recanto Regina
-          </PrimaryText>
-        </View>
+        <AddressArea />
 
         <Link href="/(app)/notifications">
           <Octicons name="bell"
@@ -97,9 +83,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  location: {
-    gap: 8,
   },
   deliveryAppsSection: {
     width: '100%',
