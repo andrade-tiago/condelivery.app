@@ -1,48 +1,44 @@
 import Colors from "@/constants/colors"
-import {
-  ColorValue,
-  Image,
-  StyleSheet,
-  Text,
-  View
-} from "react-native"
+import React from "react"
+import { Image, LayoutChangeEvent, StyleSheet, View } from "react-native"
 
 type BannerProps = {
-  imgURL: string,
-  title: string,
-  description: string,
-  imgAlign: 'left' | 'right',
-  backgroundColor: ColorValue,
+  imgURL: string
 }
 
 const Banner: React.FunctionComponent<BannerProps> = (props) => {
-  const data: React.JSX.Element = (
-    <View style={styles.textContainer}>
-      <Text style={styles.title}>
-        {props.title}
-      </Text>
-      <Text style={styles.description}>
-        {props.description}
-      </Text>
-    </View>
-  )
+  const [imageDimensions, setImageDimensions] = React.useState({ width: 0, height: 0 })
+  const [bannerWidth, setBannerWidth] = React.useState(0)
+  const [bannerHeight, setBannerHeight] = React.useState(0)
 
-  const image: React.JSX.Element = (
-    <Image
-      source={{ uri: props.imgURL }}
-      style={styles.image}
-      resizeMode="contain"
-    />
-  )
+  const onWrapperLayout = (event: LayoutChangeEvent) => {
+    setBannerWidth(event.nativeEvent.layout.width)
+  }
 
-  const content: React.JSX.Element =
-    (props.imgAlign === 'left')
-    ? <>{image}{data}</>
-    : <>{data}{image}</>
+  React.useEffect(() => {
+    Image.getSize(props.imgURL, (width, height) => {
+      setImageDimensions({ width, height })
+    })
+  }, [])
+
+  React.useEffect(() => {
+    if (!imageDimensions.width) { return }
+
+    setBannerHeight(
+      (imageDimensions.height / imageDimensions.width) * bannerWidth
+    )
+  }, [imageDimensions, bannerWidth])
 
   return (
-    <View style={{ ...styles.wrapper, backgroundColor: props.backgroundColor }}>
-      {content}
+    <View
+      style={{ ...styles.wrapper, height: bannerHeight }}
+      onLayout={onWrapperLayout}
+    >
+      <Image
+        source={{ uri: props.imgURL }}
+        style={styles.image}
+        resizeMode="cover"
+      />
     </View>
   )
 }
@@ -52,26 +48,8 @@ const styles = StyleSheet.create({
   wrapper: {
     width: '100%',
     borderRadius: 20,
+    backgroundColor: Colors.white[0],
     overflow: 'hidden',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 4,
-  },
-  textContainer: {
-    gap: 8,
-    maxWidth: 250,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-  },
-  title: {
-    color: Colors.white[0],
-    fontWeight: '400',
-    fontSize: 16,
-  },
-  description: {
-    color: Colors.white[0],
-    fontWeight: '700',
-    fontSize: 18,
   },
   image: {
     flex: 1,

@@ -13,6 +13,8 @@ import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 const Home: React.FunctionComponent = () => {
   const deliveryApps = useDeliveryApps()
 
+  const bannerImg = 'https://diariodonordeste.verdesmares.com.br/image/contentid/policy:1.3224072:1651227530/mc-picanha-divulgacao-1280x630.jpg'
+
   const renderDeliveryApp: ListRenderItem<DeliveryApp> = ({ item }) => {
     return (
       <Link key={item.id}
@@ -46,11 +48,7 @@ const Home: React.FunctionComponent = () => {
       </View>
 
       <Banner
-        title="Alma de pastel"
-        description="Alma de pastel é uma coisa muito boa nas terças-feiras"
-        imgAlign="right"
-        imgURL="https://static.vecteezy.com/system/resources/previews/026/537/482/original/hand-holding-ice-cream-on-transparent-background-generative-ai-free-png.png"
-        backgroundColor={Colors.success[600]}
+        imgURL={bannerImg}
       />
 
       <View style={styles.deliveryAppsSection}>

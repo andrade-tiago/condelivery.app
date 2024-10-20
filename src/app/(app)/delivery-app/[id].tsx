@@ -12,7 +12,14 @@ import useProducts from "@/hooks/use-products"
 import useRestaurants from "@/hooks/use-restaurants"
 import { Link, useLocalSearchParams, useNavigation } from "expo-router"
 import React from "react"
-import { FlatList, ListRenderItem, ScrollView, StyleSheet, useWindowDimensions, View } from "react-native"
+import {
+  FlatList,
+  ListRenderItem,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View
+} from "react-native"
 
 type SearchParams = {
   name: string,
@@ -25,6 +32,7 @@ const Home: React.FunctionComponent = () => {
 
   const restaurants = useRestaurants()
   const products = useProducts()
+  const bannerImg = 'https://static.pizzahut.pt/fotos/produtos/digitais_melts_oct_600x400_789969228670e23060133b.png'
 
   const renderRestaurantCardItem: ListRenderItem<Restaurant> = ({ item }) => {
     return (
@@ -64,13 +72,7 @@ const Home: React.FunctionComponent = () => {
 
       <SearchBar />
 
-      <Banner
-        title="Alma de pastel"
-        description="Alma de pastel é uma coisa muito boa nas terças-feiras"
-        imgAlign="right"
-        imgURL="https://static.vecteezy.com/system/resources/previews/026/537/482/original/hand-holding-ice-cream-on-transparent-background-generative-ai-free-png.png"
-        backgroundColor={Colors.success[600]}
-      />
+      <Banner imgURL={bannerImg} />
 
       <View style={styles.section}>
         <H2>
