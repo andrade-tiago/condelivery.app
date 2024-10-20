@@ -4,7 +4,7 @@ import LoadingScreen from "@/components/LoadingScreen"
 import ProductCard from "@/components/ProductCard"
 import { BoldText, PrimaryText, SecondaryText, StrongText } from "@/components/Text"
 import Colors from "@/constants/colors"
-import products, { ProductAdditional } from "@/content/products"
+import { ProductAdditional } from "@/content/products"
 import useProduct from "@/hooks/use-product"
 import currency from "@/lib/intl-currency"
 import { AntDesign } from "@expo/vector-icons"
@@ -108,7 +108,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
 
         <View style={styles.group}>
           <AntDesign name="minus"
-            size={20}
+            size={26}
             color={Colors.primary[300]}
             onPress={subtractFromQuantity}
           />
@@ -118,7 +118,7 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
           </BoldText>
 
           <AntDesign name="plus"
-            size={20}
+            size={26}
             color={Colors.primary[300]}
             onPress={addToQuantity}
           />
