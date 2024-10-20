@@ -1,6 +1,7 @@
 import Button, { ButtonVariant } from "@/components/Button"
 import LoadingScreen from "@/components/LoadingScreen"
 import RequestCard from "@/components/RequestCard"
+import { SecondaryText } from "@/components/Text"
 import Colors from "@/constants/colors"
 import { Request } from "@/content/requests"
 import useRequests from "@/hooks/use-requests"
@@ -27,6 +28,17 @@ const RequestsScreen: React.FunctionComponent = () => {
         storeName={item.store}
         storeImgURL={item.storeImgURL}
       />
+    )
+  }
+
+  const renderEmptyListComponent = () => {
+    return (
+      <SecondaryText>
+        {requestTypeSelected === 'active'
+          ? 'Quando houver pedidos em aberto, eles serão mostrados aqui'
+          : 'Quando você concluir um pedido, ele aparecerá aqui'
+        }
+      </SecondaryText>
     )
   }
 
@@ -58,6 +70,7 @@ const RequestsScreen: React.FunctionComponent = () => {
         renderItem={renderRequestCard}
         style={styles.requestList}
         contentContainerStyle={styles.requestListContentContainer}
+        ListEmptyComponent={renderEmptyListComponent}
       />
     </View>
   )
