@@ -47,7 +47,7 @@ const products: Product[] = [
     id: 2,
     name: 'Batata Frita B. Cup',
     description: 'Um cone de batatas fritas estilo belga com cheddar e bacon.',
-    imgURL: 'https://gazetadasemana.com.br/images/noticias/125911/28071006_B.Cup-2.jpg.jpg',
+    imgURL: 'https://jornaldobelem.com.br/images/noticias/11124/28071006_B.Cup-2.jpg.jpg',
     price: 25.5,
     additional: [],
   },

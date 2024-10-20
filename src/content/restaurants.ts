@@ -8,32 +8,32 @@ const restaurants: Restaurant[] = [
   {
     id: 0,
     name: 'Brasa',
-    imgURL: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Abu_Nawas_Beach_restaurant_-_Flickr_-_Al_Jazeera_English_%281%29.jpg/800px-Abu_Nawas_Beach_restaurant_-_Flickr_-_Al_Jazeera_English_%281%29.jpg',
+    imgURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqyioHCy4mZVkK-Th9BoMwuMQ9oxpd425oeg',
   },
   {
     id: 1,
     name: 'Gringa',
-    imgURL: 'https://cdn.goomer.com.br/website/base/9b8/619/251/6-dicas-para-deixar-o-seu-restaurante-moderno.jpeg',
+    imgURL: 'https://static.ifood-static.com.br/image/upload/t_medium/logosgde/de03b60d-5e7e-4361-800a-d38c73ffeb64/202006261013_Hap1_.jpeg',
   },
   {
     id: 2,
     name: 'Grão',
-    imgURL: 'https://servircomrequinte.francobachot.com.br/wp-content/uploads/2018/11/254602-mesas-e-cadeiras-para-restaurante-como-escolher-as-mais-indicadas-e1543433615490.jpg',
+    imgURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtTPEyd39n9ru7gI8jF_aYkThlyR1LNgAUaA',
   },
   {
     id: 3,
     name: 'Starbucks',
-    imgURL: 'https://www.pensarcursos.com.br/blog/wp-content/uploads/2021/02/900-473-mesas-cadeiras-restaurante.jpg',
+    imgURL: 'https://upload.wikimedia.org/wikipedia/pt/0/0f/Starbucks_Corporation_Logo_2011.svg.png',
   },
   {
     id: 4,
     name: 'Pizza Hut',
-    imgURL: 'https://media-cdn.tripadvisor.com/media/photo-s/1c/1b/7b/13/area-interna.jpg',
+    imgURL: 'https://yt3.googleusercontent.com/ytc/AOPolaR0bfAa132btyYxM82Bb8p6oSNI60M66uBa-EiMNQ=s176-c-k-c0x00ffffff-no-rj',
   },
   {
     id: 5,
-    name: 'Girafas',
-    imgURL: 'https://img.freepik.com/fotos-premium/renderizacao-interior-de-estilo-loft-3d-cafe-pub_751108-539.jpg',
+    name: 'Giraffas',
+    imgURL: 'https://assets.deliveryinbox.com.br/images/establishments/giraffas.jpg',
   },
 ]
 
