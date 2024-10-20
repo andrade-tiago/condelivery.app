@@ -1,4 +1,4 @@
-import Button, { ButtonProps, ButtonVariant } from "@/components/Button"
+import Button, { ButtonVariant } from "@/components/Button"
 import LoadingScreen from "@/components/LoadingScreen"
 import RequestCard from "@/components/RequestCard"
 import Colors from "@/constants/colors"
@@ -13,25 +13,9 @@ const RequestsScreen: React.FunctionComponent = () => {
   const requests = useRequests()
   const [requestTypeSelected, setRequestTypeSelected] = React.useState<RequestType>('active')
 
-  const getButtonVariant = (requestType: RequestType): ButtonVariant => {
+  const getButtonVariantForRequestType = (requestType: RequestType): ButtonVariant => {
     return requestType === requestTypeSelected ? 'gradient' : 'outline'
   }
-
-  const filterButtonsProps: ButtonProps[] = [
-    {
-      text: 'Ativos',
-      variant: getButtonVariant('active'),
-      onPress: () => setRequestTypeSelected('active'),
-    },
-    {
-      text: 'Concluídos',
-      variant: getButtonVariant('completed'),
-      onPress: () => setRequestTypeSelected('completed'),
-    },
-  ]
-  const filterButtons = filterButtonsProps.map((buttonProps, i) => (
-    <Button key={i} {...buttonProps} />
-  ))
 
   const renderRequestCard: ListRenderItem<Request> = ({ item }) => {
     return (
@@ -57,7 +41,16 @@ const RequestsScreen: React.FunctionComponent = () => {
   return (
     <View style={styles.screen}>
       <View style={styles.header}>
-        {filterButtons}
+        <Button
+          text="Ativos"
+          variant={getButtonVariantForRequestType('active')}
+          onPress={() => setRequestTypeSelected('active')}
+        />
+        <Button
+          text="Concluídos"
+          variant={getButtonVariantForRequestType('completed')}
+          onPress={() => setRequestTypeSelected('completed')}
+        />
       </View>
 
       <FlatList
