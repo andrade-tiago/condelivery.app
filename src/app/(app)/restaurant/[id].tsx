@@ -32,14 +32,15 @@ const RestaurantScreen: React.FunctionComponent = () => {
     )
   }
 
+  React.useEffect(() => {
+    if (restaurant.isLoading) { return }
+
+    navigation.setOptions({ headerTitle: restaurant.data!.name })
+  }, [ restaurant.isLoading ])
+
   if (restaurant.isLoading || products.isLoading) {
     return <LoadingScreen />
   }
-
-  React.useEffect(() => {
-    navigation.setOptions({ headerTitle: restaurant.data!.name })
-  }, [])
-
   return (
     <View style={styles.screen}>
       <FlatList
