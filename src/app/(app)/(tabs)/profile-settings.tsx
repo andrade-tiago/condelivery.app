@@ -2,8 +2,7 @@ import ProfileCard from "@/components/ProfileCard"
 import SettingOption, { SettingOptionProps } from "@/components/SettingOption"
 import { SecondaryText } from "@/components/Text"
 import Colors from "@/constants/colors"
-import profile from "@/content/profile"
-import useLoginStore from "@/store/login"
+import useUserStore from "@/store/login"
 import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
 
@@ -13,10 +12,8 @@ type Category = {
 }
 
 const ProfileSettingsScreen = () => {
-  const loginStore = useLoginStore()
+  const userStore = useUserStore()
   const router = useRouter()
-  
-  const userData = profile
 
   const settings: Category[] = [
     {
@@ -32,7 +29,7 @@ const ProfileSettingsScreen = () => {
       name: 'Suporte',
       settings: [
         { text: 'Suporte' },
-        { text: 'Sair da conta', onPress: () => loginStore.setLogged(false) },
+        { text: 'Sair da conta', onPress: () => userStore.setLogged(false) },
       ],
     },
   ]
@@ -57,8 +54,8 @@ const ProfileSettingsScreen = () => {
   return (
     <View style={styles.screen}>
       <ProfileCard
-        imgURL={profile.imgURL}
-        title={profile.name}
+        imgURL={userStore.profileImgURL}
+        title={userStore.name}
       />
 
       <View style={styles.settings}>

@@ -2,27 +2,27 @@ import Button from "@/components/Button"
 import Input from "@/components/Input"
 import ProfileCard from "@/components/ProfileCard"
 import Colors from "@/constants/colors"
-import profile from "@/content/profile"
+import useUserStore from "@/store/login"
 import { cpfFormat } from "@/utils/cpf"
 import React from "react"
 import { StyleSheet, View } from "react-native"
 
 const ProfileEditSettings: React.FunctionComponent = () => {
-  const userData = profile
+  const userStore = useUserStore()
 
-  const cpfText = cpfFormat(userData.cpf)
+  const cpfText = cpfFormat(userStore.cpf)
 
   return (
     <View style={styles.screen}>
       <ProfileCard
-        imgURL={profile.imgURL}
-        title={profile.name}
+        imgURL={userStore.profileImgURL}
+        title={userStore.name}
       />
 
       <View style={styles.inputs}>
         <Input.Root variant="elevated">
           <Input.Field
-            placeholder={profile.name}
+            placeholder={userStore.name}
           />
         </Input.Root>
 
@@ -35,7 +35,7 @@ const ProfileEditSettings: React.FunctionComponent = () => {
 
         <Input.Root variant="elevated">
           <Input.Field
-            placeholder={profile.email}
+            placeholder={userStore.email}
             readOnly
           />
         </Input.Root>
