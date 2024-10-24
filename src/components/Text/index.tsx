@@ -5,6 +5,7 @@ import PrimaryText from './PrimaryText'
 import SecondaryText from './SecondaryText'
 import SmallText from "./SmallText";
 import StrongText from "./Strong";
+import WrongText from "./WrongText";
 
 export {
   H1,
@@ -14,4 +15,5 @@ export {
   SecondaryText,
   SmallText,
   StrongText,
+  WrongText,
 }
