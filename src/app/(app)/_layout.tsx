@@ -47,6 +47,10 @@ const AppLayout: React.FunctionComponent = () => {
         name="saved-cards"
         options={{ headerTitle: 'Cartões salvos' }}
       />
+      <Stack.Screen
+        name="payments"
+        options={{ headerTitle: 'Pagamento' }}
+      />
     </Stack>
   )
 }
