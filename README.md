@@ -34,12 +34,13 @@ cd condelivery.app
 # Baixe as dependências
 npm install
 
-# Execute a aplicação :D
+# Execute a aplicação
 npx expo start
 
 # Êeeeeeeeeee :D
+# Agora é só esperar aparecer o QR code e escaneá=lo com seu Expo App (se for o caso)
 ```
 
 ## Alternativa
 
-Você também pode instalar o último [APK](https://drive.google.com/file/d/1fKEUBqanvO9kS8zl1BJb0lhJD_WhHfM0/view?usp=sharing) gerado do estágio atual de desenvolvimento diretamente em seu dispositivo móvel.
+Você também pode instalar o último [APK](https://drive.google.com/file/d/1fKEUBqanvO9kS8zl1BJb0lhJD_WhHfM0/view?usp=sharing) gerado do estágio anterior (desatualizado) de desenvolvimento diretamente em seu dispositivo móvel.
