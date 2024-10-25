@@ -2,6 +2,7 @@ import ProfileCard from "@/components/ProfileCard"
 import SettingOption, { SettingOptionProps } from "@/components/SettingOption"
 import { SecondaryText } from "@/components/Text"
 import Colors from "@/constants/colors"
+import ImagesURLs from "@/constants/images-url"
 import useUserStore from "@/store/login"
 import { useRouter } from "expo-router"
 import { StyleSheet, View } from "react-native"
@@ -54,7 +55,7 @@ const ProfileSettingsScreen = () => {
   return (
     <View style={styles.screen}>
       <ProfileCard
-        imgURL={userStore.profileImgURL}
+        imgURL={userStore.profileImgURL || ImagesURLs.defaultUserImg}
         title={userStore.name}
       />
 
