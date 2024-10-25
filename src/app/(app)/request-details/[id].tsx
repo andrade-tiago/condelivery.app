@@ -8,7 +8,7 @@ import { ProductAdditional } from "@/content/products"
 import useProduct from "@/hooks/use-product"
 import currency from "@/lib/intl-currency"
 import { AntDesign } from "@expo/vector-icons"
-import { useLocalSearchParams } from "expo-router"
+import { useLocalSearchParams, useRouter } from "expo-router"
 import React from "react"
 import { FlatList, ListRenderItem, StyleSheet, View } from "react-native"
 
@@ -17,6 +17,7 @@ type Params = {
 }
 
 const RequestDetailsScreen: React.FunctionComponent = () => {
+  const router = useRouter()
   const params = useLocalSearchParams<Params>()
   const productId = Number(params.id)
 
@@ -92,6 +93,10 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
 
   const totalCostText = currency.format(totalCost)
 
+  const handlePay = () => {
+    router.push(`/(app)/payments?subtotal=${totalCost}`)
+  }
+
   return (
     <View style={styles.screen}>
       <ProductCard
@@ -148,10 +153,10 @@ const RequestDetailsScreen: React.FunctionComponent = () => {
         </BoldText>
       </View>
 
-      <Button
+      <Button full
         variant="gradient"
         text="Ir para o pagamento"
-        full
+        onPress={handlePay}
       />
     </View>
   )
